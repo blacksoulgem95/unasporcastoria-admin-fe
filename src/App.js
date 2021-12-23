@@ -5,7 +5,7 @@ import {Navbar} from "./components";
 function App() {
     return (
         <Router>
-            <Navbar />
+            <Navbar/>
             <div id="page">
                 <Routes>
                     <Route path="/" element={<Home/>}/>
