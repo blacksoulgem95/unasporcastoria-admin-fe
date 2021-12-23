@@ -1,12 +1,12 @@
 import logo from "../../asset/logo_circle.png";
-import {useRef, useState} from "react";
+import {useState} from "react";
 function Navbar() {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false)
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="/">
-                    <img src={logo} height="28"/>
+                    <img src={logo} height="28" alt="logo"/>
                 </a>
 
                 <a role="button" className={"navbar-burger " + (isNavbarOpen ? "is-active" : "")} aria-label="menu" aria-expanded={isNavbarOpen}
