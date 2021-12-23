@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "una-sporca-storia"
+  },
+  "targets": {
+    "una-sporca-storia": {
+      "hosting": {
+        "admin": [
+          "unasporcastoria-admin"
+        ]
+      }
+    }
+  }
+}
