@@ -4,6 +4,7 @@ import {useAuthState} from "react-firebase-hooks/auth";
 
 import LoginModal from "../LoginModal";
 import {auth} from "../../config/firebase";
+import {Link} from "react-router-dom";
 
 function Navbar() {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false)
@@ -29,7 +30,7 @@ function Navbar() {
                     </a>
                 </div>
 
-                <div id="navbar" className={"navbar-menu " + (isNavbarOpen ? "is-active" : "")}>
+                <div id="navbar" className={"navbar-menu animated " + (isNavbarOpen ? "is-active" : "")}>
                     <div className="navbar-start">
                         {user ? <>
                             <a className="navbar-item">
@@ -42,9 +43,9 @@ function Navbar() {
                                 </a>
 
                                 <div className="navbar-dropdown">
-                                    <a className="navbar-item">
+                                    <Link to="/items" className="navbar-item">
                                         Oggetti
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </> : <></>}

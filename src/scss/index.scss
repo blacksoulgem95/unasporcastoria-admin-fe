@@ -37,3 +37,26 @@ $input-shadow: none;
 @import "~bulma/sass/layout/all";
 
 @import "~@fortawesome/fontawesome-free/css/all.css";
+
+.navbar-menu {
+  &.animated.is-active {
+    animation: navAnim .2s ease-in;
+  }
+}
+
+@keyframes navAnim {
+  0% {
+    display: none;
+    opacity: 0;
+    height: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    height: 100px;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
+}
