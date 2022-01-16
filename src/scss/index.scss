@@ -29,13 +29,14 @@ $input-shadow: none;
 }
 
 // Import only what you need from Bulma
-@import "~bulma/sass/utilities/all";
-@import "~bulma/sass/base/all";
-@import "~bulma/sass/elements/all";
-@import "~bulma/sass/form/all";
-@import "~bulma/sass/components/all";
-@import "~bulma/sass/layout/all";
-
+//@import "~bulma/sass/utilities/all";
+//@import "~bulma/sass/base/all";
+//@import "~bulma/sass/elements/all";
+//@import "~bulma/sass/form/all";
+//@import "~bulma/sass/components/all";
+//@import "~bulma/sass/layout/all";
+@import "~bulma/bulma";
+@import "~bulma-extensions/dist/css/bulma-extensions.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
 .navbar-menu {
