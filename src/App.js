@@ -1,5 +1,5 @@
 import {Home, NoMatch} from "./pages";
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {Navbar} from "./components";
 import Items from "./pages/Items";
 import 'bulma-extensions/dist/js/bulma-extensions'

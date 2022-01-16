@@ -30,7 +30,8 @@ function Items() {
                     <h1 className="title">Oggetti</h1>
 
                     <div className="">
-                        <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i className="fas fa-plus"/></button>
+                        <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i
+                            className="fas fa-plus"/></button>
                     </div>
                 </div>
                 <div className="columns">
@@ -39,7 +40,7 @@ function Items() {
                     </div>))}
                 </div>
             </section>
-            <CreateItemModal active={showCreate} setActive={setShowCreate} reloadCallback={() => getItems(pagination)} />
+            <CreateItemModal active={showCreate} setActive={setShowCreate} reloadCallback={() => getItems(pagination)}/>
         </>
     );
 }

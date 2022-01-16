@@ -7,10 +7,12 @@ function Home() {
             <section className="hero is-primary">
                 <div className="hero-body">
                     <p className="title is-flex-container is-justify-content-center">
-                        <img src={logoCoin} alt="coin-logo" className="is-inline-block" style={{height: "128px", margin: "auto"}}/>
+                        <img src={logoCoin} alt="coin-logo" className="is-inline-block"
+                             style={{height: "128px", margin: "auto"}}/>
                     </p>
                     <p className="subtitle is-flex-container is-justify-content-center">
-                        <img src={logo} alt="coin-logo" className="is-inline-block" style={{height: "128px", margin: "auto"}}/>
+                        <img src={logo} alt="coin-logo" className="is-inline-block"
+                             style={{height: "128px", margin: "auto"}}/>
                     </p>
                 </div>
             </section>

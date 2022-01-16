@@ -12,16 +12,18 @@ export default class APIService {
 
     async get(path, query) {
         try {
-        console.log('fetching ', this.base, path, new URL(path, this.base).href, explodeQueryParams(query))
-        const url = new URL(path, this.base).href;
-        console.log(url + explodeQueryParams(query))
-        return axios.get(url + explodeQueryParams(query), {
-            headers: {
-                authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
-                'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
-            }
-        })}finally{
-        console.log('did call')}
+            console.log('fetching ', this.base, path, new URL(path, this.base).href, explodeQueryParams(query))
+            const url = new URL(path, this.base).href;
+            console.log(url + explodeQueryParams(query))
+            return axios.get(url + explodeQueryParams(query), {
+                headers: {
+                    authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
+                    'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
+                }
+            })
+        } finally {
+            console.log('did call')
+        }
     }
 
     async post(path, data, query) {
