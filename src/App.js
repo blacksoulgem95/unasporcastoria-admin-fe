@@ -13,7 +13,7 @@ function App() {
                 <div id="page">
                     <Routes>
                         <Route path="/" element={<Home/>}/>
-                        <AuthenticatedRoute path="/items" element={<Items/>}/>
+                        <Route path="/items" element={<AuthenticatedRoute component={Items}/>}/>
                         <Route path="*" element={<NoMatch/>}/>
                     </Routes>
                 </div>

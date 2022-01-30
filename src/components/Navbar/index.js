@@ -10,7 +10,7 @@ function Navbar() {
 
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
 
-    const [user] = useAuthState()
+    const {user} = useAuthState()
 
     return (
         <>
