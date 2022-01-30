@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {auth} from "../../config/firebase";
+import {getAuth} from "@firebase/auth";
 import {ErrorMessage} from "../../asset/messages";
 
 function LoginModal({active, setActive}) {
@@ -17,7 +17,7 @@ function LoginModal({active, setActive}) {
     const doLogin = async () => {
         if (!!state.email && !!state.password) {
             try {
-                await auth.signInWithEmailAndPassword(state.email, state.password)
+                await getAuth().signInWithEmailAndPassword(state.email, state.password)
                 setActive(false)
             } catch (error) {
                 console.dir(error)

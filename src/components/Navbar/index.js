@@ -1,17 +1,16 @@
 import logo from "../../asset/logo_circle.png";
 import {useState} from "react";
-import {useAuthState} from "react-firebase-hooks/auth";
-
+import {getAuth} from "@firebase/auth";
 import LoginModal from "../LoginModal";
-import {auth} from "../../config/firebase";
 import {Link} from "react-router-dom";
+import {useAuthState} from "../../context/auth.context";
 
 function Navbar() {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false)
 
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
 
-    const [user] = useAuthState(auth)
+    const [user] = useAuthState()
 
     return (
         <>
@@ -54,7 +53,7 @@ function Navbar() {
                     <div className="navbar-end">
                         {user ? <div className="navbar-item">
                                 <div className="buttons">
-                                    <a className="button" onClick={() => auth.signOut()}>
+                                    <a className="button" onClick={() => getAuth().signOut()}>
                                         Log out
                                     </a>
                                 </div>
