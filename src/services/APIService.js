@@ -1,4 +1,4 @@
-import {getAuth} from '@firebase/getAuth()'
+import {getAuth} from '@firebase/auth'
 import {explodeQueryParams} from "../utils";
 import axios from "axios";
 
