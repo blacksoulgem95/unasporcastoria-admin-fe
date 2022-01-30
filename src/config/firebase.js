@@ -1,9 +1,12 @@
-import firebase from 'firebase/compat/app';
+// import firebase from 'firebase/compat/app';
+//
+// import 'firebase/compat/auth'
+// import 'firebase/compat/firestore'
 
-import 'firebase/compat/auth'
-import 'firebase/compat/firestore'
+import { initializeApp } from 'firebase/app'
 
-firebase.initializeApp({
+
+export const firebaseApp = initializeApp({
     apiKey: "AIzaSyCHHK62NJg5dNJR61zA6zaj6HP-o4y2v0w",
     authDomain: "una-sporca-storia.firebaseapp.com",
     projectId: "una-sporca-storia",
@@ -13,6 +16,6 @@ firebase.initializeApp({
     measurementId: "G-ST2BK6LY21"
 });
 
-const auth = firebase.auth();
+// const auth = firebase.auth();
 
-export {firebase, auth}
+// export {firebase, auth}
