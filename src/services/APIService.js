@@ -1,4 +1,4 @@
-import {auth} from "../config/firebase";
+import {getAuth} from '@firebase/getAuth()'
 import {explodeQueryParams} from "../utils";
 import axios from "axios";
 
@@ -17,8 +17,7 @@ export default class APIService {
             console.log(url + explodeQueryParams(query))
             return axios.get(url + explodeQueryParams(query), {
                 headers: {
-                    authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
-                    'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
+                    'X-Authorization-Firebase': getAuth().currentUser ?  await getAuth().currentUser.getIdToken() : null
                 }
             })
         } finally {
@@ -30,8 +29,7 @@ export default class APIService {
         const url = new URL(path, this.base).href;
         return axios.post(url + explodeQueryParams(query), data, {
             headers: {
-                authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
-                'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
+                'X-Authorization-Firebase': getAuth().currentUser ?  await getAuth().currentUser.getIdToken() : null
             }
         })
     }
@@ -40,8 +38,7 @@ export default class APIService {
         const url = new URL(path, this.base).href;
         return axios.put(url + explodeQueryParams(query), data, {
             headers: {
-                authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
-                'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
+                'X-Authorization-Firebase': getAuth().currentUser ?  await getAuth().currentUser.getIdToken() : null
             }
         })
     }
@@ -50,8 +47,7 @@ export default class APIService {
         const url = new URL(path, this.base).href;
         return axios.patch(url + explodeQueryParams(query), data, {
             headers: {
-                authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
-                'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
+                'X-Authorization-Firebase': getAuth().currentUser ?  await getAuth().currentUser.getIdToken() : null
             }
         })
     }
@@ -60,8 +56,7 @@ export default class APIService {
         const url = new URL(path, this.base).href;
         return axios.delete(url + explodeQueryParams(query), {
             headers: {
-                authorization: auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null,
-                'X-Authorization-Firebase': auth.currentUser ? 'bearer ' + await auth.currentUser.getIdToken() : null
+                'X-Authorization-Firebase': getAuth().currentUser ?  await getAuth().currentUser.getIdToken() : null
             }
         })
     }
