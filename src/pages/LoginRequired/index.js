@@ -1,4 +1,3 @@
-import logo from "../../asset/logo_uss.png"
 import logoCoin from "../../asset/logo_circle.png"
 
 function LoginRequired() {

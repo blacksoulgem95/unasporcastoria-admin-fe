@@ -3,7 +3,7 @@
 // import 'firebase/compat/auth'
 // import 'firebase/compat/firestore'
 
-import { initializeApp } from 'firebase/app'
+import {initializeApp} from 'firebase/app'
 
 
 export const firebaseApp = initializeApp({
