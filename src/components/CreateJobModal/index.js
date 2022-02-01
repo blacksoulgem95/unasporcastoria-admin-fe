@@ -1,7 +1,5 @@
 import {useState} from "react";
-import {ErrorMessage, itemMacroTypeLabel, itemTypeLabel} from "../../asset/messages";
-import {useItems} from "../../services/ItemService";
-import {ItemMacroType, ItemType} from "../../asset/enums";
+import {ErrorMessage} from "../../asset/messages";
 import {useJobs} from "../../services/JobService";
 
 function CreateJobModal({active, setActive, reloadCallback}) {
@@ -57,7 +55,8 @@ function CreateJobModal({active, setActive, reloadCallback}) {
                             <label className="label">Descrizione</label>
                             <div className="control">
                                     <textarea name="description" className="input is-primary" required={true}
-                                              disabled={jobsState.loading} placeholder="La Marie Kondo medievale" onChange={onChangeInput}/>
+                                              disabled={jobsState.loading} placeholder="La Marie Kondo medievale"
+                                              onChange={onChangeInput}/>
                             </div>
                         </div>
 
@@ -65,7 +64,9 @@ function CreateJobModal({active, setActive, reloadCallback}) {
                             <label className="label">Cite</label>
                             <div className="control">
                                     <textarea name="cite" className="input is-primary" required={false}
-                                              disabled={jobsState.loading} placeholder="Non so cosa sia questo campo ma c'era" onChange={onChangeInput}/>
+                                              disabled={jobsState.loading}
+                                              placeholder="Non so cosa sia questo campo ma c'era"
+                                              onChange={onChangeInput}/>
                             </div>
                         </div>
 

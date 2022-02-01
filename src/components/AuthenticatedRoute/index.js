@@ -6,7 +6,7 @@ const AuthenticatedRoute = ({component: C, ...props}) => {
     console.log(`AuthenticatedRoute: ${isAuthenticated}`)
 
     if (isAuthenticated) return <C {...props} />
-    else return <LoginRequired />
+    else return <LoginRequired/>
 
 }
 export default AuthenticatedRoute

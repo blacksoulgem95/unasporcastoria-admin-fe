@@ -23,5 +23,5 @@ export default function Card({title, body, buttons}) {
             </footer>
         </div>
 
-)
+    )
 }
