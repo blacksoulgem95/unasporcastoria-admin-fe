@@ -23,6 +23,12 @@ function Items() {
         }
     )
 
+    const reloadCallback = () => {
+        useEffect(() => {
+            getItems(pagination)
+        })
+    }
+
     return (
         <>
             <section className="section">
@@ -34,13 +40,13 @@ function Items() {
                             className="fas fa-plus"/></button>
                     </div>
                 </div>
-                <div className="columns">
+                <div className="columns is-multiline">
                     {itemsState.items.map(item => (<div key={item.id} className="column is-12-mobile is-6-tablet is-3">
                         <AdminItem item={item}/>
                     </div>))}
                 </div>
             </section>
-            <CreateItemModal active={showCreate} setActive={setShowCreate} reloadCallback={() => getItems(pagination)}/>
+            <CreateItemModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>
         </>
     );
 }

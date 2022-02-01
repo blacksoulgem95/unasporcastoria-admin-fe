@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {defaultPagination} from "../../utils";
-import {Faith} from "../../components";
-import CreateJobModal from "../../components/CreateJobModal";
+import {CreateFaithModal, Faith} from "../../components";
 import {useFaiths} from "../../services/FaithService";
 
 function Faiths() {
@@ -23,6 +22,13 @@ function Faiths() {
             }
         }
     )
+
+    const reloadCallback = () => {
+        useEffect(() => {
+            getFaiths(pagination)
+        })
+    }
+
     return (
         <>
             <section className="section">
@@ -34,16 +40,16 @@ function Faiths() {
                             className="fas fa-plus"/></button>
                     </div>
                 </div>
-                <div className="columns">
+                <div className="columns is-multiline">
                     {faithState.faiths?.content?.map(faith => (
                         <div key={faith.id} className="column is-12-mobile is-6-tablet is-3">
                             <Faith faith={faith}/>
                         </div>))}
                 </div>
             </section>
-            <CreateJobModal active={showCreate} setActive={setShowCreate} reloadCallback={() => getJobs(pagination)}/>
+            <CreateFaithModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>
         </>
     );
 }
 
-export default Jobs;
+export default Faiths;

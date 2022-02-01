@@ -17,14 +17,19 @@ function Jobs() {
     }
 
     useEffect(() => {
-            console.log('jobstate', jobsState)
             if (!initiated) {
                 getJobs(pagination)
                 setInitiated(true)
             }
         }
     )
-    console.log('state', jobsState)
+
+    const reloadCallback = () => {
+        useEffect(() => {
+            getJobs(pagination)
+        })
+    }
+
     return (
         <>
             <section className="section">
@@ -36,14 +41,14 @@ function Jobs() {
                             className="fas fa-plus"/></button>
                     </div>
                 </div>
-                <div className="columns">
+                <div className="columns is-multiline">
                     {jobsState.jobs?.content?.map(job => (
                         <div key={job.id} className="column is-12-mobile is-6-tablet is-3">
                             <Job job={job}/>
                         </div>))}
                 </div>
             </section>
-            <CreateJobModal active={showCreate} setActive={setShowCreate} reloadCallback={() => getJobs(pagination)}/>
+            <CreateJobModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>
         </>
     );
 }

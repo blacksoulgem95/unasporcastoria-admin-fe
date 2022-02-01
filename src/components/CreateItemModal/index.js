@@ -34,8 +34,11 @@ function CreateItemModal({active, setActive, reloadCallback}) {
         setState(newState)
     }
 
-    const submit = event => {
+    const submit = async event => {
         event.preventDefault()
+        await createItem(state)
+        reloadCallback()
+        setActive(false)
     }
 
     return (<div className={"modal " + (active ? 'is-active' : '')}>

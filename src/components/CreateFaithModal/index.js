@@ -1,33 +1,27 @@
 import {useState} from "react";
 import {ErrorMessage} from "../../asset/messages";
-import {useJobs} from "../../services/JobService";
+import {useFaiths} from "../../services/FaithService";
 
-function CreateJobModal({active, setActive, reloadCallback}) {
+function CreateFaithModal({active, setActive, reloadCallback}) {
     const [state, setState] = useState({
         name: null,
         description: null,
-        cite: null,
-        canMarry: true
+        limitSpouses: 1
     })
 
-    const {state: jobsState, createJob} = useJobs()
+    const {state: faithsState, createFaith} = useFaiths()
 
     const onChangeInput = event => {
         const newState = {...state}
         newState[event.target.name] = event.target.value
         setState(newState)
     }
-    const setBoolean = event => {
-        const newState = {...state}
-        newState[event.target.htmlFor] = !state[event.target.htmlFor]
-        setState(newState)
-    }
 
     const submit = async event => {
         event.preventDefault()
-        await createJob(state)
-        setActive(false)
+        await createFaith(state)
         reloadCallback()
+        setActive(false)
     }
 
     return (<div className={"modal " + (active ? 'is-active' : '')}>
@@ -37,19 +31,19 @@ function CreateJobModal({active, setActive, reloadCallback}) {
                 <div className="card-content">
                     <div className="content">
 
-                        {jobsState.create_error ? <div className="notification is-danger">
+                        {faithsState.create_error ? <div className="notification is-danger">
                             <button className="delete" onClick={() => setError(null)}/>
-                            {ErrorMessage[jobsState.create_error.code] || jobsState.create_error.code}
+                            {ErrorMessage[faithsState.create_error.code] || faithsState.create_error.code}
                         </div> : <></>}
 
-                        <h4 className="title">Crea Lavoro</h4>
+                        <h4 className="title">Crea Credo</h4>
 
                         <div className="field">
                             <label className="label">Nome</label>
                             <div className="control">
                                 <input name="name" className="input is-primary" required={true}
-                                       disabled={jobsState.loading}
-                                       type="text" placeholder="Professional organizer" onChange={onChangeInput}/>
+                                       disabled={faithsState.loading}
+                                       type="text" placeholder="Pastafarianesimo" onChange={onChangeInput}/>
                             </div>
                         </div>
 
@@ -57,32 +51,25 @@ function CreateJobModal({active, setActive, reloadCallback}) {
                             <label className="label">Descrizione</label>
                             <div className="control">
                                     <textarea name="description" className="input is-primary" required={true}
-                                              disabled={jobsState.loading} placeholder="La Marie Kondo medievale"
+                                              disabled={faithsState.loading}
+                                              placeholder="Viva il grandioso spaghetto volante"
                                               onChange={onChangeInput}/>
                             </div>
                         </div>
 
                         <div className="field">
-                            <label className="label">Cite</label>
+                            <label className="label">Limite di Mogli</label>
                             <div className="control">
-                                    <textarea name="cite" className="input is-primary" required={false}
-                                              disabled={jobsState.loading}
-                                              placeholder="Non so cosa sia questo campo ma c'era"
-                                              onChange={onChangeInput}/>
+                                <input name="limitSpouses" className="input is-primary" required={true}
+                                       disabled={faithsState.loading}
+                                       type="number" step={1} placeholder="1" defaultValue={1}
+                                       onChange={onChangeInput}/>
                             </div>
-                        </div>
-
-
-                        <div className="field">
-                            <input type="checkbox" name="canMarry" className="switch is-success"
-                                   disabled={jobsState.loading}
-                                   checked={state.canMarry} onClick={setBoolean}/>
-                            <label onClick={setBoolean} htmlFor="canMarry">Può sposarsi</label>
                         </div>
 
                         <div className="field has-text-centered">
-                            <button type="submit" disabled={jobsState.loading}
-                                    className={"button is-primary " + (jobsState.loading ? "is-loading" : "")}>Crea
+                            <button type="submit" disabled={faithsState.loading}
+                                    className={"button is-primary " + (faithsState.loading ? "is-loading" : "")}>Crea
                             </button>
                         </div>
                     </div>
@@ -93,4 +80,4 @@ function CreateJobModal({active, setActive, reloadCallback}) {
     </div>)
 }
 
-export default CreateJobModal;
+export default CreateFaithModal;

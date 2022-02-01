@@ -31,6 +31,7 @@ export const FAITH_SERVICE_ACTIONS = {
 const initialState = {
     loading: false,
     faiths: null,
+    pagination: null,
     faiths_error: null,
     created_faith: null,
     create_error: null
@@ -47,7 +48,8 @@ export const faithServiceReducer = (state, action) => {
             console.log(action)
             return {
                 ...state,
-                faiths: action.payload || {},
+                faiths: action.payload.response || {},
+                pagination: action.payload.pagination,
                 faiths_error: null,
                 loading: false
             };
@@ -94,9 +96,10 @@ export const useFaiths = () => {
 
     const getFaiths = useCallback(async (pagination) => {
         await dispatch(faithServiceActions.getFaiths())
+        if (!pagination) pagination = state.pagination
         try {
             const response = await service.getFaiths(pagination)
-            dispatch(faithServiceActions.getFaithsSuccess(response))
+            dispatch(faithServiceActions.getFaithsSuccess({response, pagination}))
         } catch (e) {
             console.error('cannot get faiths', e)
             dispatch(faithServiceActions.getFaithsFailure(e))
