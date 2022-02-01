@@ -17,9 +17,9 @@ export default function Card({title, body, buttons}) {
                 </div>
             </div>
             <footer className="card-footer">
-                <a href="#" className="card-footer-item">Save</a>
-                <a href="#" className="card-footer-item">Edit</a>
-                <a href="#" className="card-footer-item">Delete</a>
+                {/*<a href="#" className="card-footer-item">Save</a>*/}
+                {/*<a href="#" className="card-footer-item">Edit</a>*/}
+                {/*<a href="#" className="card-footer-item">Delete</a>*/}
             </footer>
         </div>
 

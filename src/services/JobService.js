@@ -7,13 +7,13 @@ export class JobService extends APIService {
     }
 
     async getJobs(pagination) {
-        const response = await this.get('', pagination)
-        return response.json()
+        const {data: result} = await this.get('', pagination)
+        return result
     }
 
     async createJob(data) {
-        const response = await this.post('', data)
-        return response.json()
+        const {data: result} = await this.post('', data)
+        return result
     }
 }
 
@@ -30,7 +30,7 @@ export const JOB_SERVICE_ACTIONS = {
 
 const initialState = {
     loading: false,
-    jobs: [],
+    jobs: null,
     jobs_error: null,
     created_job: null,
     create_error: null
@@ -44,12 +44,13 @@ export const jobServiceReducer = (state, action) => {
                 loading: true
             }
         case JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS:
+            console.log(action)
             return {
                 ...state,
-                jobs: action.data || [],
+                jobs: action.payload || {},
                 jobs_error: null,
                 loading: false
-            }
+            };
         case JOB_SERVICE_ACTIONS.GET_JOBS_FAILURE:
             return {
                 ...state,
@@ -67,7 +68,7 @@ export const jobServiceReducer = (state, action) => {
         case JOB_SERVICE_ACTIONS.CREATE_JOB_SUCCESS:
             return {
                 ...state,
-                created_job: action.data,
+                created_job: action.payload,
                 loading: false,
             }
         case JOB_SERVICE_ACTIONS.CREATE_JOB_FAILURE:
@@ -81,10 +82,10 @@ export const jobServiceReducer = (state, action) => {
 
 export const jobServiceActions = {
     getJobs: () => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_REQUEST}),
-    getJobsSuccess: data => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS, data}),
+    getJobsSuccess: payload => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS, payload}),
     getJobsFailure: error => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_FAILURE, error}),
     createJob: () => ({type: JOB_SERVICE_ACTIONS.CREATE_JOB_REQUEST}),
-    createJobSuccess: data => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS, data}),
+    createJobSuccess: payload => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS, payload}),
     createJobFailure: error => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_FAILURE, error}),
 }
 
@@ -92,7 +93,7 @@ export const useJobs = () => {
     const [state, dispatch] = useReducer(jobServiceReducer, initialState);
 
     const getJobs = useCallback(async (pagination) => {
-        dispatch(jobServiceActions.getJobs())
+        await dispatch(jobServiceActions.getJobs())
         try {
             const response = await service.getJobs(pagination)
             dispatch(jobServiceActions.getJobsSuccess(response))
@@ -103,7 +104,7 @@ export const useJobs = () => {
     })
 
     const createJob = useCallback(async (job) => {
-        dispatch(jobServiceActions.createJob())
+        await dispatch(jobServiceActions.createJob())
         try {
             const response = await service.createJob(job)
             dispatch(jobServiceActions.createJobSuccess(response))

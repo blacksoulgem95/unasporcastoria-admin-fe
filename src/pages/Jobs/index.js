@@ -17,13 +17,14 @@ function Jobs() {
     }
 
     useEffect(() => {
+        console.log('jobstate', jobsState)
             if (!initiated) {
                 getJobs(pagination)
                 setInitiated(true)
             }
         }
     )
-
+    console.log('state', jobsState)
     return (
         <>
             <section className="section">
@@ -36,8 +37,8 @@ function Jobs() {
                     </div>
                 </div>
                 <div className="columns">
-                    {jobsState.items?.map(item => (<div key={item.id} className="column is-12-mobile is-6-tablet is-3">
-                        <Job item={item}/>
+                    {jobsState.jobs?.content?.map(job => (<div key={job.id} className="column is-12-mobile is-6-tablet is-3">
+                        <Job job={job}/>
                     </div>))}
                 </div>
             </section>

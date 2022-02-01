@@ -7,13 +7,13 @@ export class ItemService extends APIService {
     }
 
     async getItems(pagination) {
-        const response = await this.get('', pagination)
-        return response.json()
+        const {data: result} = await this.get('', pagination)
+        return result
     }
 
     async createItem(data) {
-        const response = await this.post('', data)
-        return response.json()
+        const {data: result} = await this.post('', data)
+        return result
     }
 }
 
