@@ -45,6 +45,10 @@ function Navbar() {
                                     <Link to="/items" className="navbar-item">
                                         Oggetti
                                     </Link>
+
+                                    <Link to="/jobs" className="navbar-item">
+                                        Lavori
+                                    </Link>
                                 </div>
                             </div>
                         </> : <></>}

@@ -4,6 +4,7 @@ import {AuthenticatedRoute, Navbar} from "./components";
 import Items from "./pages/Items";
 import 'bulma-extensions/dist/js/bulma-extensions'
 import {AuthContextProvider} from "./context/auth.context";
+import Jobs from "./pages/Jobs";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/items" element={<AuthenticatedRoute component={Items}/>}/>
+                        <Route path="/jobs" element={<AuthenticatedRoute component={Jobs}/>}/>
                         <Route path="*" element={<NoMatch/>}/>
                     </Routes>
                 </div>
