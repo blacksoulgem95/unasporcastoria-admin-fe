@@ -41,7 +41,7 @@ function Items() {
                     </div>
                 </div>
                 <div className="columns is-multiline">
-                    {itemsState.items.map(item => (<div key={item.id} className="column is-12-mobile is-6-tablet is-3">
+                    {itemsState.items?.content?.map(item => (<div key={item.id} className="column is-12-mobile is-6-tablet is-3">
                         <AdminItem item={item}/>
                     </div>))}
                 </div>
