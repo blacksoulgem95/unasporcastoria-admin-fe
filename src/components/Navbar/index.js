@@ -31,10 +31,10 @@ function Navbar() {
 
                 <div id="navbar" className={"navbar-menu animated " + (isNavbarOpen ? "is-active" : "")}>
                     <div className="navbar-start">
+                        <a className="navbar-item" href="https://unasporcastoria.com">
+                            Vai al Gioco
+                        </a>
                         {user ? <>
-                            <a className="navbar-item" href="https://unasporcastoria.com">
-                                Vai al Gioco
-                            </a>
 
                             <div className="navbar-item has-dropdown is-hoverable">
                                 <a className="navbar-link">
