@@ -19,8 +19,7 @@ function CreateFaithModal({active, setActive, reloadCallback}) {
 
     const submit = async event => {
         event.preventDefault()
-        createFaith(state)
-        reloadCallback()
+        createFaith(state, reloadCallback)
         setActive(false)
     }
 

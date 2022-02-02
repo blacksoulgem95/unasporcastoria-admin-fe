@@ -36,8 +36,7 @@ function CreateItemModal({active, setActive, reloadCallback}) {
 
     const submit = async event => {
         event.preventDefault()
-        createItem(state)
-        reloadCallback()
+        createItem(state, reloadCallback)
         setActive(false)
     }
 
