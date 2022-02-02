@@ -134,24 +134,24 @@ export const useFaiths = () => {
         }
     })
 
-    const createFaith = useCallback(async (faith) => {
+    const createFaith = useCallback(async (faith, callback) => {
         await dispatch(faithServiceActions.createFaith())
         try {
             const response = await service.createFaith(faith)
             dispatch(faithServiceActions.createFaithSuccess(response))
-            getFaiths()
+            callback ? callback() : null
         } catch (e) {
             console.error('cannot create faith', e)
             dispatch(faithServiceActions.createFaithFailure(e))
         }
     })
 
-    const deleteFaith = useCallback(async (id) => {
+    const deleteFaith = useCallback(async (id, callback) => {
         await dispatch(faithServiceActions.deleteFaith())
         try {
             const response = await service.deleteFaith(id)
             dispatch(faithServiceActions.deleteFaithSuccess(response))
-            getFaiths()
+            callback ? callback() : null
         } catch (e) {
             console.error('cannot delete faith', e)
             dispatch(faithServiceActions.deleteFaithFailure(e))

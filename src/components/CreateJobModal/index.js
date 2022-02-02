@@ -25,9 +25,8 @@ function CreateJobModal({active, setActive, reloadCallback}) {
 
     const submit = async event => {
         event.preventDefault()
-        createJob(state)
+        createJob(state, reloadCallback)
         setActive(false)
-        reloadCallback()
     }
 
     return (<div className={"modal " + (active ? 'is-active' : '')}>

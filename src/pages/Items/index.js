@@ -24,9 +24,7 @@ function Items() {
     )
 
     const reloadCallback = () => {
-        useEffect(() => {
-            getItems(pagination)
-        })
+        getItems(pagination)
     }
 
     return (
@@ -43,7 +41,7 @@ function Items() {
                 <div className="columns is-multiline">
                     {itemsState.items?.content?.map(item => (
                         <div key={item.id} className="column is-12-mobile is-6-tablet is-3">
-                            <AdminItem item={item}/>
+                            <AdminItem item={item} callback={reloadCallback}/>
                         </div>))}
                 </div>
             </section>

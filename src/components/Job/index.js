@@ -1,12 +1,12 @@
 import Card from "../Card";
 import {useJobs} from "../../services/JobService";
 
-function Job({job}) {
+function Job({job, callback}) {
 
     const {state, deleteJob} = useJobs()
 
     const buttons = [
-        {action: () => deleteJob(job.id), label: "Elimina", loading: state.loading}
+        {action: () => deleteJob(job.id, callback), label: "Elimina", loading: state.loading}
     ]
 
     return (

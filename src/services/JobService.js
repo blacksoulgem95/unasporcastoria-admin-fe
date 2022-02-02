@@ -132,24 +132,24 @@ export const useJobs = () => {
         }
     })
 
-    const createJob = useCallback(async (job) => {
+    const createJob = useCallback(async (job, callback) => {
         await dispatch(jobServiceActions.createJob())
         try {
             const response = await service.createJob(job)
             dispatch(jobServiceActions.createJobSuccess(response))
-            return getJobs()
+            callback ? callback() : null
         } catch (e) {
             console.error('cannot create job', e)
             dispatch(jobServiceActions.createJobFailure(e))
         }
     })
 
-    const deleteJob = useCallback(async id => {
+    const deleteJob = useCallback(async (id, callback) => {
         dispatch(jobServiceActions.createJob())
         try {
             const response = await service.deleteJob(id)
             dispatch(jobServiceActions.deleteJobSuccess(response))
-            return getJobs()
+            callback ? callback() : null
         } catch (e) {
             console.error('cannot delete job', e)
             dispatch(jobServiceActions.deleteJobFailure(e))

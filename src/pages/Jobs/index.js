@@ -25,9 +25,7 @@ function Jobs() {
     )
 
     const reloadCallback = () => {
-        useEffect(() => {
-            getJobs(pagination)
-        })
+        getJobs(pagination)
     }
 
     return (
@@ -44,7 +42,7 @@ function Jobs() {
                 <div className="columns is-multiline">
                     {jobsState.jobs?.content?.map(job => (
                         <div key={job.id} className="column is-12-mobile is-6-tablet is-3">
-                            <Job job={job}/>
+                            <Job job={job} callback={reloadCallback}/>
                         </div>))}
                 </div>
             </section>

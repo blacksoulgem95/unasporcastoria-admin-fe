@@ -24,9 +24,7 @@ function Faiths() {
     )
 
     const reloadCallback = () => {
-        useEffect(() => {
-            getFaiths(pagination)
-        })
+        getFaiths(pagination)
     }
 
     return (
@@ -43,7 +41,7 @@ function Faiths() {
                 <div className="columns is-multiline">
                     {faithState.faiths?.content?.map(faith => (
                         <div key={faith.id} className="column is-12-mobile is-6-tablet is-3">
-                            <Faith faith={faith}/>
+                            <Faith faith={faith} callback={reloadCallback}/>
                         </div>))}
                 </div>
             </section>

@@ -1,12 +1,12 @@
 import Card from "../Card";
 import {useItems} from "../../services/ItemService";
 
-function AdminItem({item}) {
+function AdminItem({item, callback}) {
 
     const {state, deleteItem} = useItems()
 
     const buttons = [
-        {action: () => deleteItem(item.id), label: "Elimina", loading: state.loading}
+        {action: () => deleteItem(item.id, callback), label: "Elimina", loading: state.loading}
     ]
     return (
         <>

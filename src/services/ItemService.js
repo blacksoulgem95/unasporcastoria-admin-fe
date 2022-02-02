@@ -131,29 +131,29 @@ export const useItems = () => {
         }
     })
 
-    const createItem = useCallback(async (item) => {
+    const createItem = useCallback(async (item, callback) => {
         dispatch(itemServiceActions.createItem())
         try {
             const response = await service.createItem(item)
             dispatch(itemServiceActions.createItemSuccess(response))
-            getItems()
+            callback ? callback() : null
         } catch (e) {
             console.error('cannot create item', e)
             dispatch(itemServiceActions.createItemFailure(e))
         }
     })
 
-    const deleteItem = useCallback(async id => {
+    const deleteItem = useCallback(async (id, callback) => {
         dispatch(itemServiceActions.deleteItem())
         try {
             const response = await service.deleteItem(id)
             dispatch(itemServiceActions.createItemSuccess(response))
-            getItems()
+            callback ? callback() : null
         } catch (e) {
             console.error('cannot delete item', e)
             dispatch(itemServiceActions.deleteItemFailure(e))
         }
     })
 
-    return {state, getItems, createItem}
+    return {state, getItems, createItem, deleteItem}
 }
