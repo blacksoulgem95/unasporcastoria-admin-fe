@@ -2,7 +2,8 @@ export default function Card({title, body, buttons}) {
 
     function mapButton(b) {
         if (b.loading) {
-            return <a aria-disabled={true} className="card-footer-item has-text-grey">{b.label} <i className="fas fa-circle-notch fa-spin"/></a>
+            return <a aria-disabled={true} className="card-footer-item has-text-grey">{b.label} <i
+                className="fas fa-circle-notch fa-spin"/></a>
         } else {
             return <a onClick={b.action} className="card-footer-item">{b.label} </a>
         }

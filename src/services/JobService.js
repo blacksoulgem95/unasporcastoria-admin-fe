@@ -150,7 +150,7 @@ export const useJobs = () => {
             const response = await service.deleteJob(id)
             dispatch(jobServiceActions.deleteJobSuccess(response))
             return getJobs()
-        }catch (e) {
+        } catch (e) {
             console.error('cannot delete job', e)
             dispatch(jobServiceActions.deleteJobFailure(e))
         }

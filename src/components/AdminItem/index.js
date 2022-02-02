@@ -1,5 +1,5 @@
 import Card from "../Card";
-import {useJobs} from "../../services/JobService";
+import {useItems} from "../../services/ItemService";
 
 function AdminItem({item}) {
 

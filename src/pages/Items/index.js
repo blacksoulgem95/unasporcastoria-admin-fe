@@ -41,9 +41,10 @@ function Items() {
                     </div>
                 </div>
                 <div className="columns is-multiline">
-                    {itemsState.items?.content?.map(item => (<div key={item.id} className="column is-12-mobile is-6-tablet is-3">
-                        <AdminItem item={item}/>
-                    </div>))}
+                    {itemsState.items?.content?.map(item => (
+                        <div key={item.id} className="column is-12-mobile is-6-tablet is-3">
+                            <AdminItem item={item}/>
+                        </div>))}
                 </div>
             </section>
             <CreateItemModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>
