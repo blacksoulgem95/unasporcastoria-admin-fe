@@ -11,22 +11,16 @@ export default class APIService {
     }
 
     async get(path, query) {
-        try {
-            console.log('fetching ', this.base, path, new URL(path, this.base).href, explodeQueryParams(query))
-            const url = new URL(path, this.base).href;
-            console.log(url + explodeQueryParams(query))
-            return axios.get(url + explodeQueryParams(query), {
-                headers: {
-                    'X-Authorization-Firebase': getAuth().currentUser ? await getAuth().currentUser.getIdToken() : null
-                }
-            })
-        } finally {
-            console.log('did call')
-        }
+        const url = new URL(this.base).href + '/' + path;
+        return axios.get(url + explodeQueryParams(query), {
+            headers: {
+                'X-Authorization-Firebase': getAuth().currentUser ? await getAuth().currentUser.getIdToken() : null
+            }
+        })
     }
 
     async post(path, data, query) {
-        const url = new URL(path, this.base).href;
+        const url = new URL(this.base).href + '/' + path;
         return axios.post(url + explodeQueryParams(query), data, {
             headers: {
                 'X-Authorization-Firebase': getAuth().currentUser ? await getAuth().currentUser.getIdToken() : null
@@ -35,7 +29,7 @@ export default class APIService {
     }
 
     async put(path, data, query) {
-        const url = new URL(path, this.base).href;
+        const url = new URL(this.base).href + '/' + path;
         return axios.put(url + explodeQueryParams(query), data, {
             headers: {
                 'X-Authorization-Firebase': getAuth().currentUser ? await getAuth().currentUser.getIdToken() : null
@@ -44,7 +38,7 @@ export default class APIService {
     }
 
     async patch(path, data, query) {
-        const url = new URL(path, this.base).href;
+        const url = new URL(this.base).href + '/' + path;
         return axios.patch(url + explodeQueryParams(query), data, {
             headers: {
                 'X-Authorization-Firebase': getAuth().currentUser ? await getAuth().currentUser.getIdToken() : null
@@ -53,7 +47,7 @@ export default class APIService {
     }
 
     async delete(path, query) {
-        const url = new URL(path, this.base).href;
+        const url = new URL(this.base).href + '/' + path;
         return axios.delete(url + explodeQueryParams(query), {
             headers: {
                 'X-Authorization-Firebase': getAuth().currentUser ? await getAuth().currentUser.getIdToken() : null

@@ -15,6 +15,11 @@ export class FaithService extends APIService {
         const {data: result} = await this.post('', data)
         return result
     }
+
+    async deleteFaith(id) {
+        const {data: result} = await this.delete(`${id}`)
+        return result
+    }
 }
 
 const service = new FaithService()
@@ -26,6 +31,9 @@ export const FAITH_SERVICE_ACTIONS = {
     CREATE_FAITH_REQUEST: "CREATE_FAITH_REQUEST",
     CREATE_FAITH_SUCCESS: "CREATE_FAITH_SUCCESS",
     CREATE_FAITH_FAILURE: "CREATE_FAITH_FAILURE",
+    DELETE_FAITH_REQUEST: "DELETE_FAITH_REQUEST",
+    DELETE_FAITH_SUCCESS: "DELETE_FAITH_SUCCESS",
+    DELETE_FAITH_FAILURE: "DELETE_FAITH_FAILURE",
 }
 
 const initialState = {
@@ -79,6 +87,23 @@ export const faithServiceReducer = (state, action) => {
                 loading: false,
                 create_error: action.error
             }
+        case FAITH_SERVICE_ACTIONS.DELETE_FAITH_REQUEST:
+            return {
+                ...state,
+                delete_error: null,
+                loading: true
+            }
+        case FAITH_SERVICE_ACTIONS.DELETE_FAITH_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            }
+        case FAITH_SERVICE_ACTIONS.DELETE_FAITH_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                delete_error: action.error
+            }
     }
 }
 
@@ -87,8 +112,11 @@ export const faithServiceActions = {
     getFaithsSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS, payload}),
     getFaithsFailure: error => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_FAILURE, error}),
     createFaith: () => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_REQUEST}),
-    createFaithSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS, payload}),
-    createFaithFailure: error => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_FAILURE, error}),
+    createFaithSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_SUCCESS, payload}),
+    createFaithFailure: error => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_FAILURE, error}),
+    deleteFaith: () => ({type: FAITH_SERVICE_ACTIONS.DELETE_FAITH_REQUEST}),
+    deleteFaithSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.DELETE_FAITH_SUCCESS, payload}),
+    deleteFaithFailure: error => ({type: FAITH_SERVICE_ACTIONS.DELETE_FAITH_FAILURE, error}),
 }
 
 export const useFaiths = () => {
@@ -111,11 +139,24 @@ export const useFaiths = () => {
         try {
             const response = await service.createFaith(faith)
             dispatch(faithServiceActions.createFaithSuccess(response))
+            getFaiths()
         } catch (e) {
             console.error('cannot create faith', e)
             dispatch(faithServiceActions.createFaithFailure(e))
         }
     })
 
-    return {state, getFaiths, createFaith}
+    const deleteFaith = useCallback(async (id) => {
+        await dispatch(faithServiceActions.deleteFaith())
+        try {
+            const response = await service.deleteFaith(id)
+            dispatch(faithServiceActions.deleteFaithSuccess(response))
+            getFaiths()
+        } catch (e) {
+            console.error('cannot delete faith', e)
+            dispatch(faithServiceActions.deleteFaithFailure(e))
+        }
+    })
+
+    return {state, getFaiths, createFaith, deleteFaith}
 }

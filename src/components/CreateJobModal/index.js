@@ -25,7 +25,7 @@ function CreateJobModal({active, setActive, reloadCallback}) {
 
     const submit = async event => {
         event.preventDefault()
-        await createJob(state)
+        createJob(state)
         setActive(false)
         reloadCallback()
     }
