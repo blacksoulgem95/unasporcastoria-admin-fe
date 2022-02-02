@@ -10,7 +10,7 @@ export default function Card({title, body, buttons}) {
     }
 
     return (
-        <div className="card">
+        <div className="card fadein">
             <header className="card-header">
                 <p className="card-header-title">
                     {title}

@@ -1,37 +1,37 @@
 import {useEffect, useState} from "react";
 import {defaultPagination} from "../../utils";
-import {CreateFaithModal, Faith, Loader} from "../../components";
-import {useFaiths} from "../../services/FaithService";
+import {CreateSkillModal, Skill, Loader} from "../../components";
+import {useSkills} from "../../services/SkillService";
 
-function Faiths() {
+function Skills() {
     const [initiated, setInitiated] = useState(false)
     const [showCreate, setShowCreate] = useState(false)
     const [pagination, setPagination] = useState(defaultPagination())
-    const {state: faithState, getFaiths} = useFaiths()
+    const {state: skillState, getSkills} = useSkills()
 
     const updatePagination = p => {
         const newPagination = {...pagination, p}
         setPagination(newPagination)
-        getFaiths(newPagination)
+        getSkills(newPagination)
     }
 
     useEffect(() => {
             if (!initiated) {
-                getFaiths(pagination)
+                getSkills(pagination)
                 setInitiated(true)
             }
         }
     )
 
     const reloadCallback = () => {
-        getFaiths(pagination)
+        getSkills(pagination)
     }
 
     return (
         <>
             <section className="section">
                 <div className="is-flex is-align-items-center is-justify-content-space-between">
-                    <h1 className="title">Fedi</h1>
+                    <h1 className="title">Abilità</h1>
 
                     <div className="">
                         <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i
@@ -39,18 +39,18 @@ function Faiths() {
                     </div>
                 </div>
                 <div className="columns is-multiline">
-                    {faithState.loading ? <div className="column is-12">
+                    {skillState.loading ? <div className="column is-12">
                         <Loader/>
                     </div> : <></>}
-                    {faithState.loading ? <></> : faithState.faiths?.content?.map(faith => (
-                        <div key={faith.id} className="column is-12-mobile is-6-tablet is-3">
-                            <Faith faith={faith} callback={reloadCallback}/>
+                    {skillState.loading ? <></> : skillState.skills?.content?.map(skill => (
+                        <div key={skill.id} className="column is-12-mobile is-6-tablet is-3">
+                            <Skill skill={skill} callback={reloadCallback}/>
                         </div>))}
                 </div>
             </section>
-            <CreateFaithModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>
+            <CreateSkillModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>
         </>
     );
 }
 
-export default Faiths;
+export default Skills;

@@ -61,3 +61,19 @@ $input-shadow: none;
     height: 100%;
   }
 }
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadein {
+  animation: linear 1s fadein;
+}
+
+@import "loader";

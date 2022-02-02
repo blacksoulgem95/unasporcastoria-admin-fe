@@ -16,9 +16,9 @@ function Navbar() {
         <>
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <a className="navbar-item" href="/">
+                    <Link to="/" className="navbar-item">
                         <img src={logo} height="28" alt="logo"/>
-                    </a>
+                    </Link>
 
                     <a role="button" className={"navbar-burger " + (isNavbarOpen ? "is-active" : "")} aria-label="menu"
                        aria-expanded={isNavbarOpen}
@@ -32,8 +32,8 @@ function Navbar() {
                 <div id="navbar" className={"navbar-menu animated " + (isNavbarOpen ? "is-active" : "")}>
                     <div className="navbar-start">
                         {user ? <>
-                            <a className="navbar-item">
-                                Dashboard
+                            <a className="navbar-item" href="https://unasporcastoria.com">
+                                Vai al Gioco
                             </a>
 
                             <div className="navbar-item has-dropdown is-hoverable">
@@ -52,6 +52,10 @@ function Navbar() {
 
                                     <Link to="/faiths" className="navbar-item">
                                         Credi religiosi
+                                    </Link>
+
+                                    <Link to="/skills" className="navbar-item">
+                                        Abilità
                                     </Link>
                                 </div>
                             </div>
