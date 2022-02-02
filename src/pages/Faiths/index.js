@@ -31,7 +31,7 @@ function Faiths() {
         <>
             <section className="section">
                 <div className="is-flex is-align-items-center is-justify-content-space-between">
-                    <h1 className="title">Credi religiosi</h1>
+                    <h1 className="title">Fedi</h1>
 
                     <div className="">
                         <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i

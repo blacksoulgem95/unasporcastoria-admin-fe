@@ -35,7 +35,7 @@ function CreateFaithModal({active, setActive, reloadCallback}) {
                             {ErrorMessage[faithsState.create_error.code] || faithsState.create_error.code}
                         </div> : <></>}
 
-                        <h4 className="title">Crea Credo</h4>
+                        <h4 className="title">Crea Fede</h4>
 
                         <div className="field">
                             <label className="label">Nome</label>
