@@ -1,7 +1,7 @@
 import {useItems} from "../../services/ItemService";
 import {useEffect, useState} from "react";
 import {defaultPagination} from "../../utils";
-import {AdminItem, CreateItemModal} from "../../components";
+import {AdminItem, CreateItemModal, Loader} from "../../components";
 
 function Items() {
     const [initiated, setInitiated] = useState(false)
@@ -39,7 +39,10 @@ function Items() {
                     </div>
                 </div>
                 <div className="columns is-multiline">
-                    {itemsState.items?.content?.map(item => (
+                    {itemsState.loading ? <div className="column is-12">
+                        <Loader/>
+                    </div> : <></>}
+                    {itemsState.loading ? <></> : itemsState.items?.content?.map(item => (
                         <div key={item.id} className="column is-12-mobile is-6-tablet is-3">
                             <AdminItem item={item} callback={reloadCallback}/>
                         </div>))}

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {defaultPagination} from "../../utils";
-import {Job} from "../../components";
+import {Job, Loader} from "../../components";
 import {useJobs} from "../../services/JobService";
 import CreateJobModal from "../../components/CreateJobModal";
 
@@ -40,7 +40,10 @@ function Jobs() {
                     </div>
                 </div>
                 <div className="columns is-multiline">
-                    {jobsState.jobs?.content?.map(job => (
+                    {jobsState.loading ? <div className="column is-12">
+                        <Loader/>
+                    </div> : <></>}
+                    {jobsState.loading ? <></> : jobsState.jobs?.content?.map(job => (
                         <div key={job.id} className="column is-12-mobile is-6-tablet is-3">
                             <Job job={job} callback={reloadCallback}/>
                         </div>))}
