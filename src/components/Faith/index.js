@@ -8,10 +8,17 @@ function Faith({faith, callback}) {
         {action: () => deleteFaith(faith.id, callback), label: "Elimina", loading: state.loading}
     ]
 
+    const body = () => {
+        return (<div>
+            <p>{faith.description}</p>
+            <p><b>Limite mogli:</b> {faith.limitSpouses}</p>
+        </div>)
+    }
+
     return (
         <>
             <Card title={faith.name}
-                  body={<p>{faith.description}</p>}
+                  body={body()}
                   buttons={buttons}
             />
         </>

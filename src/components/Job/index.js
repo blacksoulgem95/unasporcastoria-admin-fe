@@ -1,5 +1,6 @@
 import Card from "../Card";
 import {useJobs} from "../../services/JobService";
+import {yesNo} from "../../utils/boolean";
 
 function Job({job, callback}) {
 
@@ -9,10 +10,19 @@ function Job({job, callback}) {
         {action: () => deleteJob(job.id, callback), label: "Elimina", loading: state.loading}
     ]
 
+    const body = () => {
+        return (<>
+                <p>{job.description}</p>
+                <p><b>Cite:</b> {job.cite}</p>
+                <p><b>Può sposarsi?</b> {yesNo(job.canMarry)}</p>
+            </>
+        )
+    }
+
     return (
         <>
             <Card title={job.name}
-                  body={<p>{job.description}</p>}
+                  body={body()}
                   buttons={buttons}
             />
         </>
