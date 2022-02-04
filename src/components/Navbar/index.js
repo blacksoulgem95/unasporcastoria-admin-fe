@@ -47,11 +47,11 @@ function Navbar() {
                                     </Link>
 
                                     <Link to="/jobs" className="navbar-item">
-                                        Lavori
+                                        Mestieri
                                     </Link>
 
                                     <Link to="/faiths" className="navbar-item">
-                                        Credi religiosi
+                                        Fedi
                                     </Link>
 
                                     <Link to="/skills" className="navbar-item">
