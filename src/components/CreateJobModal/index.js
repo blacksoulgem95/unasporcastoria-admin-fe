@@ -41,7 +41,7 @@ function CreateJobModal({active, setActive, reloadCallback}) {
                             {ErrorMessage[jobsState.create_error.code] || jobsState.create_error.code}
                         </div> : <></>}
 
-                        <h4 className="title">Crea Lavoro</h4>
+                        <h4 className="title">Crea Mestiere</h4>
 
                         <div className="field">
                             <label className="label">Nome</label>
