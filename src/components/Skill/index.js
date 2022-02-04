@@ -9,10 +9,18 @@ function Skill({skill, callback}) {
         {action: () => deleteSkill(skill.id, callback), label: "Elimina", loading: state.loading}
     ]
 
+    const body = () => {
+        return (<>
+                <p>{skill.description1}</p>
+                <p><b>Info Addizionali:</b> {skill.description2}</p>
+            </>
+        )
+    }
+
     return (
         <>
             <Card title={skill.name}
-                  body={<p>{skill.description}</p>}
+                  body={body()}
                   buttons={buttons}
             />
         </>
