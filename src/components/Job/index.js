@@ -13,7 +13,7 @@ function Job({job, callback}) {
     const body = () => {
         return (<>
                 <p>{job.description}</p>
-                <p><b>Cite:</b> {job.cite}</p>
+                <p><b>Citazione:</b> {job.cite}</p>
                 <p><b>Può sposarsi?</b> {yesNo(job.canMarry)}</p>
             </>
         )

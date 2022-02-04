@@ -2,29 +2,31 @@ import {useEffect, useState} from "react";
 import {defaultPagination} from "../../utils";
 import {CreateFaithModal, Faith, Loader} from "../../components";
 import {useFaiths} from "../../services/FaithService";
+import Pagination from "../../components/Pagination";
 
 function Faiths() {
     const [initiated, setInitiated] = useState(false)
     const [showCreate, setShowCreate] = useState(false)
-    const [pagination, setPagination] = useState(defaultPagination())
     const {state: faithState, getFaiths} = useFaiths()
 
     const updatePagination = p => {
-        const newPagination = {...pagination, p}
-        setPagination(newPagination)
+        let newPagination
+        if (faithState?.pagination)
+            newPagination = {...faithState?.pagination, ...p}
+        else newPagination = {...p}
         getFaiths(newPagination)
     }
 
     useEffect(() => {
             if (!initiated) {
-                getFaiths(pagination)
+                getFaiths(defaultPagination())
                 setInitiated(true)
             }
         }
     )
 
     const reloadCallback = () => {
-        getFaiths(pagination)
+        getFaiths()
     }
 
     return (
@@ -46,6 +48,9 @@ function Faiths() {
                         <div key={faith.id} className="column is-12-mobile is-6-tablet is-3">
                             <Faith faith={faith} callback={reloadCallback}/>
                         </div>))}
+                </div>
+                <div className="is-flex is-align-items-center is-justify-content-center">
+                    <Pagination data={faithState.faiths} doSearch={updatePagination} />
                 </div>
             </section>
             <CreateFaithModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>

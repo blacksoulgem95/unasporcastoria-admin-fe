@@ -2,29 +2,31 @@ import {useItems} from "../../services/ItemService";
 import {useEffect, useState} from "react";
 import {defaultPagination} from "../../utils";
 import {AdminItem, CreateItemModal, Loader} from "../../components";
+import Pagination from "../../components/Pagination";
 
 function Items() {
     const [initiated, setInitiated] = useState(false)
     const [showCreate, setShowCreate] = useState(false)
-    const [pagination, setPagination] = useState(defaultPagination())
     const {state: itemsState, getItems} = useItems()
 
     const updatePagination = p => {
-        const newPagination = {...pagination, p}
-        setPagination(newPagination)
+        let newPagination
+        if (itemsState?.pagination)
+            newPagination = {...itemsState?.pagination, ...p}
+        else newPagination = {...p}
         getItems(newPagination)
     }
 
     useEffect(() => {
             if (!initiated) {
-                getItems(pagination)
+                getItems(defaultPagination())
                 setInitiated(true)
             }
         }
     )
 
     const reloadCallback = () => {
-        getItems(pagination)
+        getItems()
     }
 
     return (
@@ -46,6 +48,9 @@ function Items() {
                         <div key={item.id} className="column is-12-mobile is-6-tablet is-3">
                             <AdminItem item={item} callback={reloadCallback}/>
                         </div>))}
+                </div>
+                <div className="is-flex is-align-items-center is-justify-content-center">
+                    <Pagination data={itemsState.items} doSearch={updatePagination}/>
                 </div>
             </section>
             <CreateItemModal active={showCreate} setActive={setShowCreate} reloadCallback={reloadCallback}/>

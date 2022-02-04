@@ -49,6 +49,7 @@ export const jobServiceReducer = (state, action) => {
         case JOB_SERVICE_ACTIONS.GET_JOBS_REQUEST:
             return {
                 ...state,
+                pagination: action.payload.pagination,
                 loading: true
             }
         case JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS:
@@ -106,7 +107,7 @@ export const jobServiceReducer = (state, action) => {
 }
 
 export const jobServiceActions = {
-    getJobs: () => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_REQUEST}),
+    getJobs: (payload) => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_REQUEST, payload}),
     getJobsSuccess: payload => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_SUCCESS, payload}),
     getJobsFailure: error => ({type: JOB_SERVICE_ACTIONS.GET_JOBS_FAILURE, error}),
     createJob: () => ({type: JOB_SERVICE_ACTIONS.CREATE_JOB_REQUEST}),
@@ -121,8 +122,8 @@ export const useJobs = () => {
     const [state, dispatch] = useReducer(jobServiceReducer, initialState);
 
     const getJobs = useCallback(async (pagination) => {
-        await dispatch(jobServiceActions.getJobs())
         if (!pagination) pagination = state.pagination
+        await dispatch(jobServiceActions.getJobs({pagination}))
         try {
             const response = await service.getJobs(pagination)
             dispatch(jobServiceActions.getJobsSuccess(response))

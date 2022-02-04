@@ -49,12 +49,13 @@ export const itemServiceReducer = (state, action) => {
         case ITEM_SERVICE_ACTIONS.GET_ITEMS_REQUEST:
             return {
                 ...state,
+                pagination: action.payload.pagination,
                 loading: true
             }
         case ITEM_SERVICE_ACTIONS.GET_ITEMS_SUCCESS:
             return {
                 ...state,
-                items: action.data || [],
+                items: action.payload || [],
                 items_error: null,
                 loading: false
             }
@@ -75,7 +76,7 @@ export const itemServiceReducer = (state, action) => {
         case ITEM_SERVICE_ACTIONS.CREATE_ITEM_SUCCESS:
             return {
                 ...state,
-                created_item: action.data,
+                created_item: action.payload,
                 loading: false,
             }
         case ITEM_SERVICE_ACTIONS.CREATE_ITEM_FAILURE:
@@ -105,14 +106,14 @@ export const itemServiceReducer = (state, action) => {
 }
 
 export const itemServiceActions = {
-    getItems: () => ({type: ITEM_SERVICE_ACTIONS.GET_ITEMS_REQUEST}),
-    getItemsSuccess: data => ({type: ITEM_SERVICE_ACTIONS.GET_ITEMS_SUCCESS, data}),
+    getItems: (payload) => ({type: ITEM_SERVICE_ACTIONS.GET_ITEMS_REQUEST, payload}),
+    getItemsSuccess: payload => ({type: ITEM_SERVICE_ACTIONS.GET_ITEMS_SUCCESS, payload}),
     getItemsFailure: error => ({type: ITEM_SERVICE_ACTIONS.GET_ITEMS_FAILURE, error}),
     createItem: () => ({type: ITEM_SERVICE_ACTIONS.CREATE_ITEM_REQUEST}),
-    createItemSuccess: data => ({type: ITEM_SERVICE_ACTIONS.CREATE_ITEM_SUCCESS, data}),
+    createItemSuccess: payload => ({type: ITEM_SERVICE_ACTIONS.CREATE_ITEM_SUCCESS, payload}),
     createItemFailure: error => ({type: ITEM_SERVICE_ACTIONS.CREATE_ITEM_FAILURE, error}),
     deleteItem: () => ({type: ITEM_SERVICE_ACTIONS.DELETE_ITEM_REQUEST}),
-    deleteItemSuccess: data => ({type: ITEM_SERVICE_ACTIONS.DELETE_ITEM_SUCCESS, data}),
+    deleteItemSuccess: payload => ({type: ITEM_SERVICE_ACTIONS.DELETE_ITEM_SUCCESS, payload}),
     deleteItemFailure: error => ({type: ITEM_SERVICE_ACTIONS.DELETE_ITEM_FAILURE, error}),
 }
 
@@ -120,8 +121,8 @@ export const useItems = () => {
     const [state, dispatch] = useReducer(itemServiceReducer, initialState);
 
     const getItems = useCallback(async (pagination) => {
-        dispatch(itemServiceActions.getItems())
         if (!pagination) pagination = state.pagination
+        dispatch(itemServiceActions.getItems({pagination}))
         try {
             const response = await service.getItems(pagination)
             dispatch(itemServiceActions.getItemsSuccess(response))

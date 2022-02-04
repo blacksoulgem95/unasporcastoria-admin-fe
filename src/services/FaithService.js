@@ -50,6 +50,7 @@ export const faithServiceReducer = (state, action) => {
         case FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST:
             return {
                 ...state,
+                pagination: action.payload.pagination,
                 loading: true
             }
         case FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS:
@@ -57,7 +58,6 @@ export const faithServiceReducer = (state, action) => {
             return {
                 ...state,
                 faiths: action.payload.response || {},
-                pagination: action.payload.pagination,
                 faiths_error: null,
                 loading: false
             };
@@ -108,7 +108,7 @@ export const faithServiceReducer = (state, action) => {
 }
 
 export const faithServiceActions = {
-    getFaiths: () => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST}),
+    getFaiths: (payload) => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST, payload}),
     getFaithsSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS, payload}),
     getFaithsFailure: error => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_FAILURE, error}),
     createFaith: () => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_REQUEST}),
@@ -123,8 +123,8 @@ export const useFaiths = () => {
     const [state, dispatch] = useReducer(faithServiceReducer, initialState);
 
     const getFaiths = useCallback(async (pagination) => {
-        await dispatch(faithServiceActions.getFaiths())
         if (!pagination) pagination = state.pagination
+        await dispatch(faithServiceActions.getFaiths({pagination}))
         try {
             const response = await service.getFaiths(pagination)
             dispatch(faithServiceActions.getFaithsSuccess({response, pagination}))

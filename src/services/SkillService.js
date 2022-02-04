@@ -50,6 +50,7 @@ export const skillServiceReducer = (state, action) => {
         case FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST:
             return {
                 ...state,
+                pagination: action.payload.pagination,
                 loading: true
             }
         case FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS:
@@ -108,7 +109,7 @@ export const skillServiceReducer = (state, action) => {
 }
 
 export const skillServiceActions = {
-    getSkills: () => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST}),
+    getSkills: (payload) => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST, payload}),
     getSkillsSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS, payload}),
     getSkillsFailure: error => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_FAILURE, error}),
     createSkill: () => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_REQUEST}),
@@ -123,8 +124,8 @@ export const useSkills = () => {
     const [state, dispatch] = useReducer(skillServiceReducer, initialState);
 
     const getSkills = useCallback(async (pagination) => {
-        await dispatch(skillServiceActions.getSkills())
         if (!pagination) pagination = state.pagination
+        await dispatch(skillServiceActions.getSkills({pagination}))
         try {
             const response = await service.getSkills(pagination)
             dispatch(skillServiceActions.getSkillsSuccess({response, pagination}))
