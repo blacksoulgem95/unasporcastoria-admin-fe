@@ -9,8 +9,8 @@ export const defaultPagination = () => {
     return {
         page: 0,
         size: 10,
-        sort: null,
-        direction: null
+        sort: "id",
+        direction: "asc"
     }
 }
 
