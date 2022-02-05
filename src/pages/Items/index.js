@@ -45,7 +45,7 @@ function Items() {
                         <Loader/>
                     </div> : <></>}
                     {itemsState.loading ? <></> : itemsState.items?.content?.map(item => (
-                        <div key={item.id} className="column is-12-mobile is-6-tablet is-3">
+                        <div key={item.id} className="column is-12-mobile is-6-tablet is-4-desktop">
                             <AdminItem item={item} callback={reloadCallback}/>
                         </div>))}
                 </div>

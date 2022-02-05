@@ -47,7 +47,7 @@ function Jobs() {
                         <Loader/>
                     </div> : <></>}
                     {jobsState.loading ? <></> : jobsState.jobs?.content?.map(job => (
-                        <div key={job.id} className="column is-12-mobile is-6-tablet is-3">
+                        <div key={job.id} className="column is-12-mobile is-6-tablet is-4-desktop">
                             <Job job={job} callback={reloadCallback}/>
                         </div>))}
                 </div>

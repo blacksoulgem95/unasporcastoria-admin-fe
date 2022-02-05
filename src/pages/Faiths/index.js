@@ -45,7 +45,7 @@ function Faiths() {
                         <Loader/>
                     </div> : <></>}
                     {faithState.loading ? <></> : faithState.faiths?.content?.map(faith => (
-                        <div key={faith.id} className="column is-12-mobile is-6-tablet is-3">
+                        <div key={faith.id} className="column is-12-mobile is-6-tablet is-4-desktop">
                             <Faith faith={faith} callback={reloadCallback}/>
                         </div>))}
                 </div>

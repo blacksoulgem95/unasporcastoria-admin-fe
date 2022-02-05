@@ -44,7 +44,7 @@ function Skills() {
                         <Loader/>
                     </div> : <></>}
                     {skillState.loading ? <></> : skillState.skills?.content?.map(skill => (
-                        <div key={skill.id} className="column is-12-mobile is-6-tablet is-3">
+                        <div key={skill.id} className="column is-12-mobile is-6-tablet is-4-desktop">
                             <Skill skill={skill} callback={reloadCallback}/>
                         </div>))}
                 </div>

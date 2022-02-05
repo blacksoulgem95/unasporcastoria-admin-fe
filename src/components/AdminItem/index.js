@@ -11,7 +11,7 @@ function AdminItem({item, callback}) {
     const [image, setImage] = useState(noImg)
 
     const buttons = [
-        {action: () => alert('Work in progress'), label: label('fas fa-image', 'Cambia foto'), loading: state.loading},
+        {action: () => alert('Work in progress'), label: label('fas fa-image', 'Foto'), loading: state.loading},
         {action: () => alert('Work in progress'), label: label('fas fa-folder-open', 'Apri'), loading: state.loading},
         {
             action: () => alert('Work in progress'),
