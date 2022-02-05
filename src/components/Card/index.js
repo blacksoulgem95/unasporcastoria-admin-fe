@@ -1,4 +1,4 @@
-export default function Card({title, body, buttons}) {
+export default function Card({title, body, buttons, image}) {
 
     function mapButton(b) {
         if (b.loading) {
@@ -16,11 +16,16 @@ export default function Card({title, body, buttons}) {
                     {title}
                 </p>
                 <button className="card-header-icon" aria-label="more options">
-      <span className="icon">
-        <i className="fas fa-angle-down" aria-hidden="true"/>
-      </span>
+                      <span className="icon">
+                        <i className="fas fa-angle-down" aria-hidden="true"/>
+                      </span>
                 </button>
             </header>
+            {image ? (<div className="card-image">
+                <figure className="image is-square">
+                    <img src={image} alt=" image"/>
+                </figure>
+            </div>) : <></>}
             <div className="card-content">
                 <div className="content">
                     {body}
