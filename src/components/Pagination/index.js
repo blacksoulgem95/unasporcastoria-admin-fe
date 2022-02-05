@@ -41,10 +41,24 @@ export default function Pagination({data, doSearch}) {
         )
     }
 
+    const previous = () => {
+        if (data.first) return
+        trigger(data.number - 1)
+    }
+
+    const next = () => {
+        if (data.last) return
+        trigger(data.number + 1)
+    }
+
     return (
         <nav className="pagination is-centered" role="navigation" aria-label="pagination">
-            <a className="pagination-previous"><i className="fas fa-chevron-left"/></a>
-            <a className="pagination-next"><i className="fas fa-chevron-right"/></a>
+            <a onClick={previous} aria-disabled={data.first}
+               className={"pagination-previous " + (data.first ? 'is-disabled' : '')}><i
+                className="fas fa-chevron-left"/></a>
+            <a onClick={next} aria-disabled={data.last}
+               className={"pagination-next " + (data.last ? 'is-disabled' : '')}><i
+                className="fas fa-chevron-right"/></a>
             <ul className="pagination-list">
                 {page(0, data.first, trigger)}
                 <li><span className="pagination-ellipsis">&hellip;</span></li>
