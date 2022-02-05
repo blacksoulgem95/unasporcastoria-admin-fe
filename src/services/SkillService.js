@@ -20,20 +20,28 @@ export class SkillService extends APIService {
         const {data: result} = await this.delete(`${id}`)
         return result
     }
+
+    async updateSkill(id, data) {
+        const {data: result} = await this.put(`${id}`, data)
+        return result
+    }
 }
 
 const service = new SkillService()
 
-export const FAITH_SERVICE_ACTIONS = {
-    GET_FAITHS_REQUEST: "GET_FAITHS_REQUEST",
-    GET_FAITHS_SUCCESS: "GET_FAITHS_SUCCESS",
-    GET_FAITHS_FAILURE: "GET_FAITHS_FAILURE",
-    CREATE_FAITH_REQUEST: "CREATE_FAITH_REQUEST",
-    CREATE_FAITH_SUCCESS: "CREATE_FAITH_SUCCESS",
-    CREATE_FAITH_FAILURE: "CREATE_FAITH_FAILURE",
-    DELETE_FAITH_REQUEST: "DELETE_FAITH_REQUEST",
-    DELETE_FAITH_SUCCESS: "DELETE_FAITH_SUCCESS",
-    DELETE_FAITH_FAILURE: "DELETE_FAITH_FAILURE",
+export const SKILL_SERVICE_ACTIONS = {
+    GET_SKILLS_REQUEST: "GET_SKILLS_REQUEST",
+    GET_SKILLS_SUCCESS: "GET_SKILLS_SUCCESS",
+    GET_SKILLS_FAILURE: "GET_SKILLS_FAILURE",
+    CREATE_SKILL_REQUEST: "CREATE_SKILL_REQUEST",
+    CREATE_SKILL_SUCCESS: "CREATE_SKILL_SUCCESS",
+    CREATE_SKILL_FAILURE: "CREATE_SKILL_FAILURE",
+    DELETE_SKILL_REQUEST: "DELETE_SKILL_REQUEST",
+    DELETE_SKILL_SUCCESS: "DELETE_SKILL_SUCCESS",
+    DELETE_SKILL_FAILURE: "DELETE_SKILL_FAILURE",
+    UPDATE_SKILL_REQUEST: "UPDATE_SKILL_REQUEST",
+    UPDATE_SKILL_SUCCESS: "UPDATE_SKILL_SUCCESS",
+    UPDATE_SKILL_FAILURE: "UPDATE_SKILL_FAILURE",
 }
 
 const initialState = {
@@ -47,13 +55,13 @@ const initialState = {
 
 export const skillServiceReducer = (state, action) => {
     switch (action.type) {
-        case FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST:
+        case SKILL_SERVICE_ACTIONS.GET_SKILLS_REQUEST:
             return {
                 ...state,
                 pagination: action.payload.pagination,
                 loading: true
             }
-        case FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS:
+        case SKILL_SERVICE_ACTIONS.GET_SKILLS_SUCCESS:
             console.log(action)
             return {
                 ...state,
@@ -62,62 +70,82 @@ export const skillServiceReducer = (state, action) => {
                 skills_error: null,
                 loading: false
             };
-        case FAITH_SERVICE_ACTIONS.GET_FAITHS_FAILURE:
+        case SKILL_SERVICE_ACTIONS.GET_SKILLS_FAILURE:
             return {
                 ...state,
                 skills: [],
                 skills_error: action.error,
                 loading: false
             }
-        case FAITH_SERVICE_ACTIONS.CREATE_FAITH_REQUEST:
+        case SKILL_SERVICE_ACTIONS.CREATE_SKILL_REQUEST:
             return {
                 ...state,
                 created_skill: null,
                 create_error: null,
                 loading: true
             }
-        case FAITH_SERVICE_ACTIONS.CREATE_FAITH_SUCCESS:
+        case SKILL_SERVICE_ACTIONS.CREATE_SKILL_SUCCESS:
             return {
                 ...state,
                 created_skill: action.payload,
                 loading: false,
             }
-        case FAITH_SERVICE_ACTIONS.CREATE_FAITH_FAILURE:
+        case SKILL_SERVICE_ACTIONS.CREATE_SKILL_FAILURE:
             return {
                 ...state,
                 loading: false,
                 create_error: action.error
             }
-        case FAITH_SERVICE_ACTIONS.DELETE_FAITH_REQUEST:
+        case SKILL_SERVICE_ACTIONS.DELETE_SKILL_REQUEST:
             return {
                 ...state,
                 delete_error: null,
                 loading: true
             }
-        case FAITH_SERVICE_ACTIONS.DELETE_FAITH_SUCCESS:
+        case SKILL_SERVICE_ACTIONS.DELETE_SKILL_SUCCESS:
             return {
                 ...state,
                 loading: false,
             }
-        case FAITH_SERVICE_ACTIONS.DELETE_FAITH_FAILURE:
+        case SKILL_SERVICE_ACTIONS.DELETE_SKILL_FAILURE:
             return {
                 ...state,
                 loading: false,
                 delete_error: action.error
             }
+        case SKILL_SERVICE_ACTIONS.UPDATE_SKILL_REQUEST:
+            return {
+                ...state,
+                update_error: null,
+                loading: true
+            }
+        case SKILL_SERVICE_ACTIONS.UPDATE_SKILL_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            }
+        case SKILL_SERVICE_ACTIONS.UPDATE_SKILL_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                update_error: action.error
+            }
     }
 }
 
 export const skillServiceActions = {
-    getSkills: (payload) => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_REQUEST, payload}),
-    getSkillsSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_SUCCESS, payload}),
-    getSkillsFailure: error => ({type: FAITH_SERVICE_ACTIONS.GET_FAITHS_FAILURE, error}),
-    createSkill: () => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_REQUEST}),
-    createSkillSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_SUCCESS, payload}),
-    createSkillFailure: error => ({type: FAITH_SERVICE_ACTIONS.CREATE_FAITH_FAILURE, error}),
-    deleteSkill: () => ({type: FAITH_SERVICE_ACTIONS.DELETE_FAITH_REQUEST}),
-    deleteSkillSuccess: payload => ({type: FAITH_SERVICE_ACTIONS.DELETE_FAITH_SUCCESS, payload}),
-    deleteSkillFailure: error => ({type: FAITH_SERVICE_ACTIONS.DELETE_FAITH_FAILURE, error}),
+    getSkills: (payload) => ({type: SKILL_SERVICE_ACTIONS.GET_SKILLS_REQUEST, payload}),
+    getSkillsSuccess: payload => ({type: SKILL_SERVICE_ACTIONS.GET_SKILLS_SUCCESS, payload}),
+    getSkillsFailure: error => ({type: SKILL_SERVICE_ACTIONS.GET_SKILLS_FAILURE, error}),
+    createSkill: () => ({type: SKILL_SERVICE_ACTIONS.CREATE_SKILL_REQUEST}),
+    createSkillSuccess: payload => ({type: SKILL_SERVICE_ACTIONS.CREATE_SKILL_SUCCESS, payload}),
+    createSkillFailure: error => ({type: SKILL_SERVICE_ACTIONS.CREATE_SKILL_FAILURE, error}),
+    deleteSkill: () => ({type: SKILL_SERVICE_ACTIONS.DELETE_SKILL_REQUEST}),
+    deleteSkillSuccess: payload => ({type: SKILL_SERVICE_ACTIONS.DELETE_SKILL_SUCCESS, payload}),
+    deleteSkillFailure: error => ({type: SKILL_SERVICE_ACTIONS.DELETE_SKILL_FAILURE, error}),
+    updateSkill: () => ({type: SKILL_SERVICE_ACTIONS.UPDATE_SKILL_REQUEST}),
+    updateSkillSuccess: payload => ({type: SKILL_SERVICE_ACTIONS.UPDATE_SKILL_SUCCESS, payload}),
+    updateSkillFailure: error => ({type: SKILL_SERVICE_ACTIONS.UPDATE_SKILL_FAILURE, error}),
 }
 
 export const useSkills = () => {
@@ -159,5 +187,19 @@ export const useSkills = () => {
         }
     })
 
-    return {state, getSkills, createSkill, deleteSkill}
+    const updateSkill = useCallback(async (data, callback) => {
+        await dispatch(skillServiceActions.updateSkill())
+        try {
+            const response = await service.updateSkill(data.id, data)
+            dispatch(skillServiceActions.updateSkillSuccess(response))
+            callback ? callback() : null
+            return response
+        } catch (e) {
+            console.error('cannot delete skill', e)
+            dispatch(skillServiceActions.updateSkillFailure(e))
+            throw e
+        }
+    })
+
+    return {state, getSkills, createSkill, deleteSkill, updateSkill}
 }

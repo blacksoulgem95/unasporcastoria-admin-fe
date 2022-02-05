@@ -1,15 +1,22 @@
 import Card from "../Card";
 import {useSkills} from "../../services/SkillService";
 import {label} from "../../utils";
+import UpdateSkillModal from "../UpdateSkillModal";
+import {useState} from "react";
 
 function Skill({skill, callback}) {
 
     const {state, deleteSkill} = useSkills()
+    const [update, setUpdate] = useState(false)
 
     const buttons = [
         {action: () => alert('Work in progress'), label: label('fas fa-folder-open', 'Apri'), loading: state.loading},
-        {action: () => alert('Work in progress'), label: label('fas fa-pencil-alt', 'Modifica'), loading: state.loading},
-        {action: () => deleteSkill(skill.id, callback), label:  label('fas fa-trash', 'Elimina'), loading: state.loading}
+        {
+            action: () => setUpdate(true),
+            label: label('fas fa-pencil-alt', 'Modifica'),
+            loading: state.loading
+        },
+        {action: () => deleteSkill(skill.id, callback), label: label('fas fa-trash', 'Elimina'), loading: state.loading}
     ]
 
     const body = () => {
@@ -26,6 +33,8 @@ function Skill({skill, callback}) {
                   body={body()}
                   buttons={buttons}
             />
+            {update ? <UpdateSkillModal skill={skill} active={update} setActive={setUpdate}
+                                        reloadCallback={callback}/> : <></>}
         </>
     )
 }
