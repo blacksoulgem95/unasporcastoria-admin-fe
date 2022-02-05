@@ -39,6 +39,12 @@ export default function Pagination({data, doSearch}) {
                 {page(data.number - 1, false, trigger)}
             </>
         )
+    } else {
+        middle = (<>
+            {page(data.number - 1, false, trigger)}
+            {page(data.number, true, trigger)}
+            {page(data.number + 1, false, trigger)}
+        </>)
     }
 
     const previous = () => {

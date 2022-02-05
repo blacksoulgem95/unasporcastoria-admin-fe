@@ -20,6 +20,11 @@ export class JobService extends APIService {
         const {data: result} = await this.delete(`${id}`)
         return result
     }
+
+    async updateJob(id, data) {
+        const {data: result} = await this.put(`${id}`, data)
+        return result
+    }
 }
 
 const service = new JobService()
@@ -34,14 +39,21 @@ export const JOB_SERVICE_ACTIONS = {
     DELETE_JOB_REQUEST: "CREATE_JOB_REQUEST",
     DELETE_JOB_SUCCESS: "CREATE_JOB_SUCCESS",
     DELETE_JOB_FAILURE: "CREATE_JOB_FAILURE",
+    UPDATE_JOB_REQUEST: "UPDATE_JOB_REQUEST",
+    UPDATE_JOB_SUCCESS: "UPDATE_JOB_SUCCESS",
+    UPDATE_JOB_FAILURE: "UPDATE_JOB_FAILURE",
+    DISMISS_UPDATE_FAILURE: "DISMISS_UPDATE_FAILURE",
 }
 
 const initialState = {
     loading: false,
+    pagination: {},
     jobs: null,
     jobs_error: null,
     created_job: null,
-    create_error: null
+    create_error: null,
+    delete_error: null,
+    update_error: null
 }
 
 export const jobServiceReducer = (state, action) => {
@@ -103,6 +115,28 @@ export const jobServiceReducer = (state, action) => {
                 loading: false,
                 delete_error: action.error
             }
+        case JOB_SERVICE_ACTIONS.UPDATE_JOB_REQUEST:
+            return {
+                ...state,
+                update_error: null,
+                loading: true
+            }
+        case JOB_SERVICE_ACTIONS.UPDATE_JOB_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            }
+        case JOB_SERVICE_ACTIONS.UPDATE_JOB_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                update_error: action.error
+            }
+        case JOB_SERVICE_ACTIONS.DISMISS_UPDATE_FAILURE:
+            return {
+                ...state,
+                update_error: null
+            }
     }
 }
 
@@ -116,6 +150,10 @@ export const jobServiceActions = {
     deleteJob: () => ({type: JOB_SERVICE_ACTIONS.DELETE_JOB_REQUEST}),
     deleteJobSuccess: payload => ({type: JOB_SERVICE_ACTIONS.DELETE_JOB_SUCCESS, payload}),
     deleteJobFailure: error => ({type: JOB_SERVICE_ACTIONS.DELETE_JOB_FAILURE, error}),
+    updateJob: () => ({type: JOB_SERVICE_ACTIONS.UPDATE_JOB_REQUEST}),
+    updateJobSuccess: payload => ({type: JOB_SERVICE_ACTIONS.UPDATE_JOB_SUCCESS, payload}),
+    updateJobFailure: error => ({type: JOB_SERVICE_ACTIONS.UPDATE_JOB_FAILURE, error}),
+    dismissUpdateFailure: () => ({type: JOB_SERVICE_ACTIONS.DISMISS_UPDATE_FAILURE})
 }
 
 export const useJobs = () => {
@@ -146,7 +184,7 @@ export const useJobs = () => {
     })
 
     const deleteJob = useCallback(async (id, callback) => {
-        dispatch(jobServiceActions.createJob())
+        dispatch(jobServiceActions.deleteJob())
         try {
             const response = await service.deleteJob(id)
             dispatch(jobServiceActions.deleteJobSuccess(response))
@@ -157,5 +195,23 @@ export const useJobs = () => {
         }
     })
 
-    return {state, getJobs, createJob, deleteJob}
+    const updateJob = useCallback(async (payload, callback) => {
+        dispatch(jobServiceActions.updateJob())
+        try {
+            const response = await service.updateJob(payload.id, payload)
+            dispatch(jobServiceActions.updateJobSuccess(response))
+            callback ? callback() : null
+            return response;
+        } catch (e) {
+            console.error('cannot delete job', e)
+            dispatch(jobServiceActions.updateJobFailure(e))
+            throw e
+        }
+    })
+
+    const dismissUpdateFailure = useCallback(() => {
+        dispatch(jobServiceActions.dismissUpdateFailure())
+    })
+
+    return {state, getJobs, createJob, deleteJob, updateJob, dismissUpdateFailure}
 }
