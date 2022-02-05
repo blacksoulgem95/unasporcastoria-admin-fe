@@ -43,7 +43,7 @@ function CreateItemModal({active, setActive, reloadCallback}) {
     return (<div className={"modal " + (active ? 'is-active' : '')}>
         <div className="modal-background"/>
         <div className="modal-content">
-            <form id="createItemModal" onSubmit={submit} className="card">
+            <form id="createItemModal" onSubmit={submit} className="card parchment">
                 <div className="card-content">
                     <div className="content">
 

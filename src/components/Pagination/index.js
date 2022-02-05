@@ -60,10 +60,10 @@ export default function Pagination({data, doSearch}) {
     return (
         <nav className="pagination is-centered" role="navigation" aria-label="pagination">
             <a onClick={previous} aria-disabled={data.first}
-               className={"pagination-previous " + (data.first ? 'is-disabled' : '')}><i
+               className={" parchment pagination-previous " + (data.first ? 'is-disabled' : '')}><i
                 className="fas fa-chevron-left"/></a>
             <a onClick={next} aria-disabled={data.last}
-               className={"pagination-next " + (data.last ? 'is-disabled' : '')}><i
+               className={" parchment pagination-next " + (data.last ? 'is-disabled' : '')}><i
                 className="fas fa-chevron-right"/></a>
             <ul className="pagination-list">
                 {page(0, data.first, trigger)}
@@ -80,6 +80,6 @@ export default function Pagination({data, doSearch}) {
 }
 
 function page(number, isCurrent, trigger) {
-    return <li><a onClick={() => trigger(number)} className={"pagination-link " + (isCurrent ? 'is-current' : '')}
+    return <li><a onClick={() => trigger(number)} className={" parchment pagination-link " + (isCurrent ? 'is-current' : '')}
                   aria-label={"Go to page " + (number + 1)}>{number + 1}</a></li>
 }

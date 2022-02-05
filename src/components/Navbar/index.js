@@ -14,7 +14,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="navbar" role="navigation" aria-label="main navigation">
+            <nav className="navbar parchment" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to="/" className="navbar-item">
                         <img src={logo} height="28" alt="logo"/>

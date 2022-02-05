@@ -16,6 +16,11 @@ export const defaultPagination = () => {
 
 export const isNotNull = data => {
     if (data) return true
-    if (data === 0) return true
-    return false
+    return data === 0;
+}
+
+export const label = (iconClass, label) => {
+    return <>
+        <i className={iconClass}/>&nbsp;{label}
+    </>
 }

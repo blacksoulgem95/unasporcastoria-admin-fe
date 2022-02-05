@@ -3,6 +3,7 @@ import {useJobs} from "../../services/JobService";
 import {yesNo} from "../../utils/boolean";
 import UpdateJobModal from "../UpdateJobModal";
 import {useState} from "react";
+import {label} from "../../utils";
 
 function Job({job, callback}) {
 
@@ -10,8 +11,9 @@ function Job({job, callback}) {
     const [update, setUpdate] = useState(false)
 
     const buttons = [
-        {action: () => deleteJob(job.id, callback), label: "Elimina", loading: state.loading},
-        {action: () => setUpdate(true), label: "Aggiorna", loading: state.loading}
+        {action: () => alert('Work in progress'), label: label('fas fa-folder-open', 'Apri'), loading: state.loading},
+        {action: () => setUpdate(true), label: label('fas fa-pencil-alt', 'Modifica'), loading: state.loading},
+        {action: () => deleteJob(job.id, callback), label:  label('fas fa-trash', 'Elimina'), loading: state.loading}
     ]
 
     const body = () => {

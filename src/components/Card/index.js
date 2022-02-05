@@ -10,7 +10,7 @@ export default function Card({title, body, buttons}) {
     }
 
     return (
-        <div className="card fadein">
+        <div className="card fadein parchment">
             <header className="card-header">
                 <p className="card-header-title">
                     {title}
