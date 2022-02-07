@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {ErrorMessage} from "../../asset/messages";
+import {ErrorMessage} from "../../common/messages";
 import {useJobs} from "../../services/JobService";
 
 function CreateJobModal({active, setActive, reloadCallback}) {

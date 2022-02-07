@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {getAuth, signInWithEmailAndPassword} from "@firebase/auth";
-import {ErrorMessage} from "../../asset/messages";
+import {ErrorMessage} from "../../common/messages";
 
 function LoginModal({active, setActive}) {
 

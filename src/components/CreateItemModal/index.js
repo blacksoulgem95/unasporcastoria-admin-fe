@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {ErrorMessage, itemMacroTypeLabel, itemTypeLabel} from "../../asset/messages";
+import {ErrorMessage, itemMacroTypeLabel, itemTypeLabel} from "../../common/messages";
 import {useItems} from "../../services/ItemService";
-import {ItemMacroType, ItemType} from "../../asset/enums";
+import {ItemMacroType, ItemType} from "../../common/enums";
 
 function CreateItemModal({active, setActive, reloadCallback}) {
     const [state, setState] = useState({

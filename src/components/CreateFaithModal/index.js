@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {ErrorMessage} from "../../asset/messages";
+import {ErrorMessage} from "../../common/messages";
 import {useFaiths} from "../../services/FaithService";
 
 function CreateFaithModal({active, setActive, reloadCallback}) {

@@ -18,6 +18,8 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+$title-color: #ddd;
+
 .is-flex-container {
   display: flex;
 }
@@ -32,6 +34,14 @@ $input-shadow: none;
 @import "~bulma/bulma";
 @import "~bulma-extensions/dist/css/bulma-extensions.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";
+
+html, body {
+  background-image: url("../asset/bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+}
 
 .navbar-menu {
   &.animated.is-active {

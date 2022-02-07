@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {ErrorMessage} from "../../asset/messages";
+import {ErrorMessage} from "../../common/messages";
 import {useSkills} from "../../services/SkillService";
 
 function UpdateSkillModal({skill, active, setActive, reloadCallback}) {
