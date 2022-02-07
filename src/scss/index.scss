@@ -80,6 +80,10 @@ html, body {
   animation: linear 1s fadein;
 }
 
+p {
+  white-space: pre-wrap;
+}
+
 @import "loader";
 @import "parchment";
 

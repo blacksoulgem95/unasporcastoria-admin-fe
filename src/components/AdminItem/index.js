@@ -4,6 +4,7 @@ import {label} from "../../utils/utils";
 import {getStorage} from "@firebase/storage";
 import {useState} from "react";
 import noImg from "../../asset/no_img.png"
+import {ShortText} from "../index";
 
 function AdminItem({item, callback}) {
 
@@ -34,7 +35,7 @@ function AdminItem({item, callback}) {
                     </figure>
                 </div>
                 <div className="media-content">
-                    <p>{item.description}</p>
+                    <p><ShortText text={item.description}/></p>
                 </div>
             </div>
         )

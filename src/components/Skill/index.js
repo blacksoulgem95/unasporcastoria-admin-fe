@@ -3,6 +3,7 @@ import {useSkills} from "../../services/SkillService";
 import {label} from "../../utils/utils";
 import UpdateSkillModal from "../UpdateSkillModal";
 import {useState} from "react";
+import {ShortText} from "../index";
 
 function Skill({skill, callback}) {
 
@@ -21,8 +22,8 @@ function Skill({skill, callback}) {
 
     const body = () => {
         return (<>
-                <p>{skill.description1}</p>
-                <p><b>Info Addizionali:</b> {skill.description2}</p>
+                <p><ShortText text={skill.description1}/></p>
+                <p><b>Info Addizionali:</b> <ShortText text={skill.description2}/></p>
             </>
         )
     }

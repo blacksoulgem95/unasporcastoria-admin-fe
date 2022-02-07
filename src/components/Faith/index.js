@@ -1,6 +1,7 @@
 import Card from "../Card";
 import {useFaiths} from "../../services/FaithService";
 import {label} from "../../utils/utils";
+import {ShortText} from "../index";
 
 function Faith({faith, callback}) {
     const {state, deleteFaith} = useFaiths()
@@ -13,7 +14,7 @@ function Faith({faith, callback}) {
 
     const body = () => {
         return (<div>
-            <p>{faith.description}</p>
+            <p><ShortText text={faith.description}/></p>
             <p><b>Limite mogli:</b> {faith.limitSpouses}</p>
         </div>)
     }

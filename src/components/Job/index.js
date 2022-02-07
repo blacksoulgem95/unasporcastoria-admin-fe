@@ -4,6 +4,7 @@ import {yesNo} from "../../utils/boolean";
 import UpdateJobModal from "../UpdateJobModal";
 import {useState} from "react";
 import {label} from "../../utils/utils";
+import {ShortText} from "../index";
 
 function Job({job, callback}) {
 
@@ -18,7 +19,7 @@ function Job({job, callback}) {
 
     const body = () => {
         return (<>
-                <p>{job.description}</p>
+                <p><ShortText text={job.description}/></p>
                 <p><b>Citazione:</b> {job.cite}</p>
                 <p><b>Livello Sociale:</b> {job.level}</p>
                 <p><b>Può sposarsi?</b> {yesNo(job.canMarry)}</p>
