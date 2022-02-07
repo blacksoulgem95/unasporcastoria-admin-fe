@@ -1,6 +1,6 @@
 import Card from "../Card";
 import {useItems} from "../../services/ItemService";
-import {label} from "../../utils";
+import {label} from "../../utils/utils";
 import {getStorage} from "@firebase/storage";
 import {useState} from "react";
 import noImg from "../../asset/no_img.png"

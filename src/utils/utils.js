@@ -8,10 +8,16 @@ export const explodeQueryParams = queryObj => {
 export const defaultPagination = () => {
     return {
         page: 0,
-        size: 10,
+        size: 9,
         sort: "id",
         direction: "asc"
     }
+}
+
+export const paginationToJ = pagination => {
+    const jp = {...pagination};
+    jp.sort = `${(jp.sort || 'id')},${jp.direction || 'asc'}`
+    return jp;
 }
 
 export const isNotNull = data => {

@@ -1,5 +1,5 @@
 import {getAuth} from '@firebase/auth'
-import {explodeQueryParams} from "../utils";
+import {explodeQueryParams} from "../utils/utils";
 import axios from "axios";
 
 export default class APIService {

@@ -1,6 +1,6 @@
 import Card from "../Card";
 import {useSkills} from "../../services/SkillService";
-import {label} from "../../utils";
+import {label} from "../../utils/utils";
 import UpdateSkillModal from "../UpdateSkillModal";
 import {useState} from "react";
 

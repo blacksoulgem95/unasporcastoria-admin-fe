@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {defaultPagination} from "../../utils";
-import {Job, Loader} from "../../components";
+import {defaultPagination} from "../../utils/utils";
+import {Job, Loader, Sorter} from "../../components";
 import {useJobs} from "../../services/JobService";
 import CreateJobModal from "../../components/CreateJobModal";
 import Pagination from "../../components/Pagination";
@@ -31,6 +31,14 @@ function Jobs() {
         getJobs()
     }
 
+    const fields = [{
+        id: 'id',
+        label: 'ID'
+    }, {
+        id: 'name',
+        label: 'Nome'
+    }]
+
     return (
         <>
             <section className="section">
@@ -41,6 +49,9 @@ function Jobs() {
                         <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i
                             className="fas fa-plus"/></button>
                     </div>
+                </div>
+                <div className="is-flex is-align-items-center is-justify-content-space-between mb-3">
+                    <Sorter pagination={jobsState?.pagination} fields={fields} setPagination={updatePagination}/>
                 </div>
                 <div className="columns is-multiline">
                     {jobsState.loading ? <div className="column is-12">

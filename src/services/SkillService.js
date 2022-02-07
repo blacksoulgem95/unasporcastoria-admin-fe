@@ -1,5 +1,6 @@
 import APIService from "./APIService";
 import {useCallback, useReducer} from "react";
+import {paginationToJ} from "../utils/utils";
 
 export class SkillService extends APIService {
     constructor() {
@@ -7,7 +8,7 @@ export class SkillService extends APIService {
     }
 
     async getSkills(pagination) {
-        const {data: result} = await this.get('', pagination)
+        const {data: result} = await this.get('', paginationToJ(pagination))
         return result
     }
 

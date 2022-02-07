@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {defaultPagination} from "../../utils";
-import {CreateSkillModal, Skill, Loader} from "../../components";
+import {defaultPagination} from "../../utils/utils";
+import {CreateSkillModal, Skill, Loader, Sorter} from "../../components";
 import {useSkills} from "../../services/SkillService";
 import Pagination from "../../components/Pagination";
 
@@ -28,6 +28,15 @@ function Skills() {
         getSkills()
     }
 
+    const fields = [{
+        id: 'id',
+        label: 'ID'
+    }, {
+        id: 'name',
+        label: 'Nome'
+    }]
+
+
     return (
         <>
             <section className="section">
@@ -38,6 +47,9 @@ function Skills() {
                         <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i
                             className="fas fa-plus"/></button>
                     </div>
+                </div>
+                <div className="is-flex is-align-items-center is-justify-content-space-between mb-3">
+                    <Sorter pagination={skillState?.pagination} fields={fields} setPagination={updatePagination}/>
                 </div>
                 <div className="columns is-multiline">
                     {skillState.loading ? <div className="column is-12">

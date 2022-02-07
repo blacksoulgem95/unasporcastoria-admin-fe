@@ -3,7 +3,7 @@ import {useJobs} from "../../services/JobService";
 import {yesNo} from "../../utils/boolean";
 import UpdateJobModal from "../UpdateJobModal";
 import {useState} from "react";
-import {label} from "../../utils";
+import {label} from "../../utils/utils";
 
 function Job({job, callback}) {
 

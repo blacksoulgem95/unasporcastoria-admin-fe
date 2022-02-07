@@ -1,7 +1,7 @@
 import {useItems} from "../../services/ItemService";
 import {useEffect, useState} from "react";
-import {defaultPagination} from "../../utils";
-import {AdminItem, CreateItemModal, Loader} from "../../components";
+import {defaultPagination} from "../../utils/utils";
+import {AdminItem, CreateItemModal, Loader, Sorter} from "../../components";
 import Pagination from "../../components/Pagination";
 
 function Items() {
@@ -29,16 +29,28 @@ function Items() {
         getItems()
     }
 
+    const fields = [{
+        id: 'id',
+        label: 'ID'
+    }, {
+        id: 'name',
+        label: 'Nome'
+    }]
+
+
     return (
         <>
             <section className="section">
                 <div className="is-flex is-align-items-center is-justify-content-space-between">
                     <h1 className="title">Oggetti</h1>
 
-                    <div className="">
+                    <div className="is-justify-content-space-between">
                         <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i
                             className="fas fa-plus"/></button>
                     </div>
+                </div>
+                <div className="is-flex is-align-items-center is-justify-content-space-between mb-3">
+                    <Sorter pagination={itemsState?.pagination} fields={fields} setPagination={updatePagination}/>
                 </div>
                 <div className="columns is-multiline">
                     {itemsState.loading ? <div className="column is-12">

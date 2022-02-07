@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {defaultPagination} from "../../utils";
-import {CreateFaithModal, Faith, Loader} from "../../components";
+import {defaultPagination} from "../../utils/utils";
+import {CreateFaithModal, Faith, Loader, Sorter} from "../../components";
 import {useFaiths} from "../../services/FaithService";
 import Pagination from "../../components/Pagination";
 
@@ -29,6 +29,15 @@ function Faiths() {
         getFaiths()
     }
 
+    const fields = [{
+        id: 'id',
+        label: 'ID'
+    }, {
+        id: 'name',
+        label: 'Nome'
+    }]
+
+
     return (
         <>
             <section className="section">
@@ -39,6 +48,9 @@ function Faiths() {
                         <button onClick={() => setShowCreate(true)} className="button is-primary is-small"><i
                             className="fas fa-plus"/></button>
                     </div>
+                </div>
+                <div className="is-flex is-align-items-center is-justify-content-space-between mb-3">
+                    <Sorter pagination={fields?.pagination} fields={fields} setPagination={updatePagination}/>
                 </div>
                 <div className="columns is-multiline">
                     {faithState.loading ? <div className="column is-12">

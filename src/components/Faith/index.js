@@ -1,6 +1,6 @@
 import Card from "../Card";
 import {useFaiths} from "../../services/FaithService";
-import {label} from "../../utils";
+import {label} from "../../utils/utils";
 
 function Faith({faith, callback}) {
     const {state, deleteFaith} = useFaiths()
