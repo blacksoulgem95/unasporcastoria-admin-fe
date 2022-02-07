@@ -19,7 +19,7 @@ function Items() {
 
     useEffect(() => {
             if (!initiated) {
-                getItems(defaultPagination())
+                getItems()
                 setInitiated(true)
             }
         }

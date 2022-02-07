@@ -1,6 +1,6 @@
 import APIService from "./APIService";
 import {useCallback, useReducer} from "react";
-import {paginationToJ} from "../utils/utils";
+import {defaultPagination, paginationToJ} from "../utils/utils";
 
 export class FaithService extends APIService {
     constructor() {
@@ -40,7 +40,7 @@ export const FAITH_SERVICE_ACTIONS = {
 const initialState = {
     loading: false,
     faiths: null,
-    pagination: null,
+    pagination: defaultPagination(),
     faiths_error: null,
     created_faith: null,
     create_error: null

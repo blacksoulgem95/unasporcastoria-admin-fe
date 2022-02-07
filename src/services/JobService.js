@@ -1,6 +1,6 @@
 import APIService from "./APIService";
 import {useCallback, useReducer} from "react";
-import {paginationToJ} from "../utils/utils";
+import {defaultPagination, paginationToJ} from "../utils/utils";
 
 export class JobService extends APIService {
     constructor() {
@@ -48,7 +48,7 @@ export const JOB_SERVICE_ACTIONS = {
 
 const initialState = {
     loading: false,
-    pagination: {},
+    pagination: defaultPagination(),
     jobs: null,
     jobs_error: null,
     created_job: null,

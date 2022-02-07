@@ -21,7 +21,7 @@ function Jobs() {
 
     useEffect(() => {
             if (!initiated) {
-                getJobs(defaultPagination())
+                getJobs()
                 setInitiated(true)
             }
         }
@@ -37,6 +37,12 @@ function Jobs() {
     }, {
         id: 'name',
         label: 'Nome'
+    }, {
+        id: 'level',
+        label: 'Livello sociale'
+    }, {
+        id: 'canMarry',
+        label: 'Può sposarsi'
     }]
 
     return (

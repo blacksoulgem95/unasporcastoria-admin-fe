@@ -1,6 +1,6 @@
 import APIService from "./APIService";
 import {useCallback, useReducer} from "react";
-import {paginationToJ} from "../utils/utils";
+import {defaultPagination, paginationToJ} from "../utils/utils";
 
 export class ItemService extends APIService {
     constructor() {
@@ -39,6 +39,7 @@ export const ITEM_SERVICE_ACTIONS = {
 
 const initialState = {
     loading: false,
+    pagination: defaultPagination(),
     items: [],
     items_error: null,
     created_item: null,

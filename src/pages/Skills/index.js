@@ -18,7 +18,7 @@ function Skills() {
     }
     useEffect(() => {
             if (!initiated) {
-                getSkills(defaultPagination())
+                getSkills()
                 setInitiated(true)
             }
         }

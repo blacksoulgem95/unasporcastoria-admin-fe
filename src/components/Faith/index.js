@@ -21,7 +21,7 @@ function Faith({faith, callback}) {
 
     return (
         <>
-            <Card title={faith.name}
+            <Card title={`${faith.name} - ID ${faith.id}`}
                   body={body()}
                   buttons={buttons}
             />

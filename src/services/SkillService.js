@@ -1,6 +1,6 @@
 import APIService from "./APIService";
 import {useCallback, useReducer} from "react";
-import {paginationToJ} from "../utils/utils";
+import {defaultPagination, paginationToJ} from "../utils/utils";
 
 export class SkillService extends APIService {
     constructor() {
@@ -48,7 +48,7 @@ export const SKILL_SERVICE_ACTIONS = {
 const initialState = {
     loading: false,
     skills: null,
-    pagination: null,
+    pagination: defaultPagination(),
     skills_error: null,
     created_skill: null,
     create_error: null

@@ -19,7 +19,7 @@ function Faiths() {
 
     useEffect(() => {
             if (!initiated) {
-                getFaiths(defaultPagination())
+                getFaiths()
                 setInitiated(true)
             }
         }
@@ -35,6 +35,9 @@ function Faiths() {
     }, {
         id: 'name',
         label: 'Nome'
+    }, {
+        id: 'limitSpouses',
+        label: 'Limite Mogli'
     }]
 
 
